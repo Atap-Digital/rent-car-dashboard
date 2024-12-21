@@ -187,12 +187,13 @@ fakeUsers.initialize();
 // Define the shape of Product data
 export type Product = {
   photo_url: string;
-  name: string;
-  description: string;
+  nama_mobil: string;
+  plat_nomor: string;
   created_at: string;
-  price: number;
+  harga_sewa: number;
+  deskripsi: string;
+  profit: number;
   id: number;
-  category: string;
   updated_at: string;
 };
 
@@ -204,27 +205,25 @@ export const fakeProducts = {
   initialize() {
     const sampleProducts: Product[] = [];
     function generateRandomProductData(id: number): Product {
-      const categories = [
-        'Electronics',
-        'Furniture',
-        'Clothing',
-        'Toys',
-        'Groceries',
-        'Books',
-        'Jewelry',
-        'Beauty Products'
-      ];
-
       return {
         id,
-        name: faker.commerce.productName(),
-        description: faker.commerce.productDescription(),
+        nama_mobil: faker.vehicle.manufacturer(),
+        plat_nomor: `${faker.string
+          .alpha()
+          .toUpperCase()} ${faker.string.numeric({ length: 4 })} ${faker.string
+          .alpha()
+          .toUpperCase()}`,
         created_at: faker.date
           .between({ from: '2022-01-01', to: '2023-12-31' })
           .toISOString(),
-        price: parseFloat(faker.commerce.price({ min: 5, max: 500, dec: 2 })),
+        harga_sewa: parseFloat(
+          faker.commerce.price({ min: 1000000, max: 5000000, dec: 0 })
+        ),
+        profit: parseFloat(
+          faker.commerce.price({ min: 1000000, max: 5000000, dec: 0 })
+        ),
         photo_url: `https://api.slingacademy.com/public/sample-products/${id}.png`,
-        category: faker.helpers.arrayElement(categories),
+        deskripsi: faker.vehicle.model(),
         updated_at: faker.date.recent().toISOString()
       };
     }
@@ -250,14 +249,14 @@ export const fakeProducts = {
     // Filter products based on selected categories
     if (categories.length > 0) {
       products = products.filter((product) =>
-        categories.includes(product.category)
+        categories.includes(product.plat_nomor)
       );
     }
 
     // Search functionality across multiple fields
     if (search) {
       products = matchSorter(products, search, {
-        keys: ['name', 'description', 'category']
+        keys: ['plat_nomor']
       });
     }
 

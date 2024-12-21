@@ -63,15 +63,16 @@ export default function ProductForm({
   pageTitle: string;
 }) {
   const defaultValues = {
-    name: initialData?.name || '',
-    category: initialData?.category || '',
-    price: initialData?.price || 0,
-    description: initialData?.description || ''
+    name: initialData?.nama_mobil || '',
+    description: initialData?.deskripsi || '',
+    category: '',
+    price: initialData?.harga_sewa || 0,
+    image: null
   };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    values: defaultValues
+    defaultValues
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {

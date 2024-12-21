@@ -112,12 +112,13 @@ export type Employee = {
 
 export type Product = {
   photo_url: string;
-  name: string;
-  description: string;
+  nama_mobil: string;
+  plat_nomor: string;
   created_at: string;
-  price: number;
+  harga_sewa: number;
+  deskripsi: string;
+  profit: number;
   id: number;
-  category: string;
   updated_at: string;
 };
 

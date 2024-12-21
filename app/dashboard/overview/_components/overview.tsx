@@ -3,7 +3,7 @@ import { BarGraph } from './bar-graph';
 import { PieGraph } from './pie-graph';
 import { CalendarDateRangePicker } from '@/components/date-range-picker';
 import PageContainer from '@/components/layout/page-container';
-import { RecentSales } from './recent-sales';
+import { RecentRentals } from './recent-sales';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -141,13 +141,13 @@ export default function OverViewPage() {
               </div>
               <Card className="col-span-4 md:col-span-3">
                 <CardHeader>
-                  <CardTitle>Recent Sales</CardTitle>
+                  <CardTitle>Penjualan Terakhir</CardTitle>
                   <CardDescription>
-                    You made 265 sales this month.
+                    kamu mendapatkan 265 penjualan bulan ini.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <RecentSales />
+                  <RecentRentals />
                 </CardContent>
               </Card>
               <div className="col-span-4">

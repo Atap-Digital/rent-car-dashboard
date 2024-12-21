@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { TrendingUp } from 'lucide-react';
+import { TrendingDown } from 'lucide-react';
 import { Label, Pie, PieChart } from 'recharts';
 
 import {
@@ -18,50 +18,55 @@ import {
   ChartTooltip,
   ChartTooltipContent
 } from '@/components/ui/chart';
+
 const chartData = [
-  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-  { browser: 'firefox', visitors: 287, fill: 'var(--color-firefox)' },
-  { browser: 'edge', visitors: 173, fill: 'var(--color-edge)' },
-  { browser: 'other', visitors: 190, fill: 'var(--color-other)' }
+  { kategori: 'Servis Mobil', jumlah: 500, fill: 'hsl(var(--chart-1))' },
+  { kategori: 'Inventaris', jumlah: 300, fill: 'hsl(var(--chart-2))' },
+  {
+    kategori: 'Perlengkapan Kantor',
+    jumlah: 150,
+    fill: 'hsl(var(--chart-3))'
+  },
+  { kategori: 'Utilitas', jumlah: 200, fill: 'hsl(var(--chart-4))' },
+  { kategori: 'Lain-lain', jumlah: 100, fill: 'hsl(var(--chart-5))' }
 ];
 
 const chartConfig = {
-  visitors: {
-    label: 'Visitors'
+  jumlah: {
+    label: 'Jumlah'
   },
-  chrome: {
-    label: 'Chrome',
+  'Servis Mobil': {
+    label: 'Servis Mobil',
     color: 'hsl(var(--chart-1))'
   },
-  safari: {
-    label: 'Safari',
+  Inventaris: {
+    label: 'Inventaris',
     color: 'hsl(var(--chart-2))'
   },
-  firefox: {
-    label: 'Firefox',
+  'Perlengkapan Kantor': {
+    label: 'Perlengkapan Kantor',
     color: 'hsl(var(--chart-3))'
   },
-  edge: {
-    label: 'Edge',
+  Utilitas: {
+    label: 'Utilitas',
     color: 'hsl(var(--chart-4))'
   },
-  other: {
-    label: 'Other',
+  'Lain-lain': {
+    label: 'Lain-lain',
     color: 'hsl(var(--chart-5))'
   }
 } satisfies ChartConfig;
 
 export function PieGraph() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
+  const totalPengeluaran = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.jumlah, 0);
   }, []);
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Rincian Pengeluaran Bulanan</CardTitle>
+        <CardDescription>Januari - Juni 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -75,8 +80,8 @@ export function PieGraph() {
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
+              dataKey="jumlah"
+              nameKey="kategori"
               innerRadius={60}
               strokeWidth={5}
             >
@@ -95,14 +100,14 @@ export function PieGraph() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalPengeluaran.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Pengeluaran
                         </tspan>
                       </text>
                     );
@@ -115,10 +120,11 @@ export function PieGraph() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Tren menurun sebesar 3.1% bulan ini{' '}
+          <TrendingDown className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Menampilkan total pengeluaran selama 6 bulan terakhir
         </div>
       </CardFooter>
     </Card>

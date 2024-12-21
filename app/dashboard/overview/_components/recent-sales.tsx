@@ -1,67 +1,81 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+type Rental = {
+  carPhotoUrl: string;
+  carType: string;
+  licensePlate: string;
+  amount: string;
+  rentalDuration: string;
+  rentalDate: string; // Added rentalDate field
+};
 
-export function RecentSales() {
+const rentalData: Rental[] = [
+  {
+    carPhotoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/9/9d/2018_Toyota_Camry_SE.jpg',
+    carType: 'Toyota Camry',
+    licensePlate: 'B 1234 CD',
+    amount: 'Rp. 500,000',
+    rentalDuration: '2 days',
+    rentalDate: '2023-10-01' // Example date
+  },
+  {
+    carPhotoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/7/7e/2018_Honda_Civic_SR_VTEC_CVT_1.0_Front.jpg',
+    carType: 'Honda Civic',
+    licensePlate: 'B 5678 EF',
+    amount: 'Rp. 300,000',
+    rentalDuration: '1 day',
+    rentalDate: '2023-10-02' // Example date
+  },
+  {
+    carPhotoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/4/44/2019_BMW_X5_xDrive30d_M_Sport_Automatic_3.0_Front.jpg',
+    carType: 'BMW X5',
+    licensePlate: 'B 9101 GH',
+    amount: 'Rp. 1,200,000',
+    rentalDuration: '3 days',
+    rentalDate: '2023-10-03' // Example date
+  },
+  {
+    carPhotoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/3/3e/2018_Ford_Fiesta_ST-Line_1.0.jpg',
+    carType: 'Ford Fiesta',
+    licensePlate: 'B 1122 IJ',
+    amount: 'Rp. 250,000',
+    rentalDuration: '1 day',
+    rentalDate: '2023-10-04' // Example date
+  },
+  {
+    carPhotoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/3/3b/2018_Mercedes-Benz_S_450_Luxury.jpg',
+    carType: 'Mercedes S-Class',
+    licensePlate: 'B 3344 KL',
+    amount: 'Rp. 2,000,000',
+    rentalDuration: '5 days',
+    rentalDate: '2023-10-05' // Example date
+  }
+];
+
+export function RecentRentals() {
   return (
     <div className="space-y-8">
-      <div className="flex items-center">
-        <Avatar className="h-9 w-9">
-          <AvatarImage src="/avatars/01.png" alt="Avatar" />
-          <AvatarFallback>OM</AvatarFallback>
-        </Avatar>
-        <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">Olivia Martin</p>
-          <p className="text-sm text-muted-foreground">
-            olivia.martin@email.com
-          </p>
+      {rentalData.map((rental, index) => (
+        <div key={index} className="flex items-center">
+          <img src={rental.carPhotoUrl} alt="Car Photo" className="h-9 w-9" />
+          <div className="ml-4 space-y-1">
+            <p className="text-sm font-medium leading-none">{rental.carType}</p>
+            <p className="text-sm text-muted-foreground">
+              {rental.licensePlate}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {rental.rentalDate} {/* Display rental date */}
+            </p>
+          </div>
+          <div className="ml-auto font-medium">{rental.amount}</div>
+          <div className="ml-4 text-sm text-muted-foreground">
+            {rental.rentalDuration}
+          </div>
         </div>
-        <div className="ml-auto font-medium">+$1,999.00</div>
-      </div>
-      <div className="flex items-center">
-        <Avatar className="flex h-9 w-9 items-center justify-center space-y-0 border">
-          <AvatarImage src="/avatars/02.png" alt="Avatar" />
-          <AvatarFallback>JL</AvatarFallback>
-        </Avatar>
-        <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">Jackson Lee</p>
-          <p className="text-sm text-muted-foreground">jackson.lee@email.com</p>
-        </div>
-        <div className="ml-auto font-medium">+$39.00</div>
-      </div>
-      <div className="flex items-center">
-        <Avatar className="h-9 w-9">
-          <AvatarImage src="/avatars/03.png" alt="Avatar" />
-          <AvatarFallback>IN</AvatarFallback>
-        </Avatar>
-        <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">Isabella Nguyen</p>
-          <p className="text-sm text-muted-foreground">
-            isabella.nguyen@email.com
-          </p>
-        </div>
-        <div className="ml-auto font-medium">+$299.00</div>
-      </div>
-      <div className="flex items-center">
-        <Avatar className="h-9 w-9">
-          <AvatarImage src="/avatars/04.png" alt="Avatar" />
-          <AvatarFallback>WK</AvatarFallback>
-        </Avatar>
-        <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">William Kim</p>
-          <p className="text-sm text-muted-foreground">will@email.com</p>
-        </div>
-        <div className="ml-auto font-medium">+$99.00</div>
-      </div>
-      <div className="flex items-center">
-        <Avatar className="h-9 w-9">
-          <AvatarImage src="/avatars/05.png" alt="Avatar" />
-          <AvatarFallback>SD</AvatarFallback>
-        </Avatar>
-        <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">Sofia Davis</p>
-          <p className="text-sm text-muted-foreground">sofia.davis@email.com</p>
-        </div>
-        <div className="ml-auto font-medium">+$39.00</div>
-      </div>
+      ))}
     </div>
   );
 }
