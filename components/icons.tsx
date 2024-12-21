@@ -15,9 +15,9 @@ import {
   LayoutDashboardIcon,
   Loader2,
   LogIn,
+  Car,
   LucideIcon,
   LucideProps,
-  LucideShoppingBag,
   Moon,
   MoreVertical,
   Pizza,
@@ -30,7 +30,8 @@ import {
   UserCircle2Icon,
   UserPen,
   UserX2Icon,
-  X
+  X,
+  LucideShoppingBag
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -64,6 +65,7 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  car: Car,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
