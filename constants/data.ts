@@ -109,6 +109,24 @@ export type Employee = {
   job: string;
   profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
 };
+export type Driver = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  gender: string;
+  date_of_birth: string; // Consider using a proper date type if possible
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  zipcode: string;
+  longitude?: number; // Optional field
+  latitude?: number; // Optional field
+  job: string;
+  profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
+};
 
 export type Product = {
   photo_url: string;
@@ -133,46 +151,73 @@ export const navItems: NavItem[] = [
   },
   {
     title: 'Mobil',
-    url: '/dashboard/employee',
-    icon: 'user',
-    shortcut: ['e', 'e'],
-    isActive: false,
-    items: [] // No child items
-  },
-  {
-    title: 'Mobil',
-    url: '/dashboard/product',
+    url: '/dashboard/mobil',
     icon: 'car',
-    shortcut: ['p', 'p'],
+    shortcut: ['m', 'm'],
     isActive: false,
     items: [] // No child items
   },
   {
-    title: 'Account',
-    url: '#', // Placeholder as there is no direct link for the parent
-    icon: 'billing',
-    isActive: true,
-
-    items: [
-      {
-        title: 'Profile',
-        url: '/dashboard/profile',
-        icon: 'userPen',
-        shortcut: ['m', 'm']
-      },
-      {
-        title: 'Login',
-        shortcut: ['l', 'l'],
-        url: '/',
-        icon: 'login'
-      }
-    ]
+    title: 'Booking',
+    url: '/dashboard/booking',
+    icon: 'order',
+    shortcut: ['m', 'm'],
+    isActive: false,
+    items: [] // No child items
   },
   {
-    title: 'Kanban',
-    url: '/dashboard/kanban',
+    title: 'Driver',
+    url: '/dashboard/driver',
+    icon: 'carTaxi',
+    shortcut: ['d', 'd'],
+    isActive: false,
+    items: [] // No child items
+  },
+  {
+    title: 'Karyawan',
+    url: '/dashboard/karyawan',
+    icon: 'user',
+    shortcut: ['k', 'k'],
+    isActive: false,
+    items: [] // No child items
+  },
+
+  {
+    title: 'Service',
+    url: '/dashboard/service',
+    icon: 'wrench',
+    shortcut: ['s', 's'],
+    isActive: false,
+    items: [] // No child items
+  },
+  {
+    title: 'Tugas Harian',
+    url: '/dashboard/tugas',
     icon: 'kanban',
     shortcut: ['k', 'k'],
+    isActive: false,
+    items: [] // No child items
+  }
+];
+
+export const navItemsAccounting: NavItem[] = [
+  {
+    title: 'Catatan Keuangan',
+    url: '/dashboard/catatan-keuangan',
+    icon: 'wallet',
+    shortcut: ['w', 'w']
+  },
+  {
+    title: 'Cashflow',
+    shortcut: ['c', 'c'],
+    url: '/dashboard/cashflow',
+    icon: 'piggyBank'
+  },
+  {
+    title: 'Riwayat Transaksi',
+    url: '/dashboard/riwayat-transaksi',
+    icon: 'bookOpenText',
+    shortcut: ['t', 't'],
     isActive: false,
     items: [] // No child items
   }

@@ -11,11 +11,14 @@ import {
   FileText,
   HelpCircle,
   Image,
+  CarTaxiFront,
+  BookOpenText,
   Laptop,
   LayoutDashboardIcon,
   Loader2,
   LogIn,
   Car,
+  Wrench,
   LucideIcon,
   LucideProps,
   Moon,
@@ -28,8 +31,11 @@ import {
   Twitter,
   User,
   UserCircle2Icon,
+  Wallet,
   UserPen,
   UserX2Icon,
+  ListOrdered,
+  PiggyBank,
   X,
   LucideShoppingBag
 } from 'lucide-react';
@@ -65,7 +71,13 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  bookOpenText: BookOpenText,
   car: Car,
+  carTaxi: CarTaxiFront,
+  order: ListOrdered,
+  wrench: Wrench,
+  piggyBank: PiggyBank,
+  wallet: Wallet,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
