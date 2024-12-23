@@ -1,51 +1,71 @@
 'use client';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Employee } from '@/constants/data';
+import { Transaction } from '@/constants/data';
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
 
-export const columns: ColumnDef<Employee>[] = [
+export const columns: ColumnDef<Transaction>[] = [
   {
-    id: 'select',
+    id: 'pilih',
     header: ({ table }) => (
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
+        aria-label="Pilih semua"
       />
     ),
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
+        aria-label="Pilih baris"
       />
     ),
     enableSorting: false,
     enableHiding: false
   },
   {
-    accessorKey: 'first_name',
-    header: 'NAME'
+    accessorKey: 'id',
+    header: 'ID'
   },
   {
-    accessorKey: 'country',
-    header: 'COUNTRY'
+    accessorKey: 'customer_name',
+    header: 'Nama Pelanggan'
   },
   {
-    accessorKey: 'email',
-    header: 'EMAIL'
+    accessorKey: 'car_model',
+    header: 'Model Mobil'
   },
   {
-    accessorKey: 'job',
-    header: 'COMPANY'
+    accessorKey: 'rental_date',
+    header: 'Tanggal Sewa'
   },
   {
-    accessorKey: 'gender',
-    header: 'GENDER'
+    accessorKey: 'rental_time',
+    header: 'Waktu Sewa'
   },
   {
-    id: 'actions',
+    accessorKey: 'return_date',
+    header: 'Tanggal Kembali'
+  },
+  {
+    accessorKey: 'return_time',
+    header: 'Waktu Kembali'
+  },
+  {
+    accessorKey: 'total_amount',
+    header: 'Jumlah Total'
+  },
+  {
+    accessorKey: 'status',
+    header: 'Status'
+  },
+  {
+    accessorKey: 'duration',
+    header: 'Durasi'
+  },
+  {
+    id: 'aksi',
     cell: ({ row }) => <CellAction data={row.original} />
   }
 ];

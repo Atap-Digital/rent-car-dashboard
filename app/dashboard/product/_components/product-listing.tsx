@@ -6,6 +6,14 @@ import { columns } from './product-tables/columns';
 
 type ProductListingPage = {};
 
+// Function to convert number to Rupiah format
+const convertToRupiah = (number: number) => {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR'
+  }).format(number);
+};
+
 export default async function ProductListingPage({}: ProductListingPage) {
   // Showcasing the use of search params cache in nested RSCs
   const page = searchParamsCache.get('page');
@@ -22,7 +30,11 @@ export default async function ProductListingPage({}: ProductListingPage) {
 
   const data = await fakeProducts.getProducts(filters);
   const totalProducts = data.total_products;
-  const products: Product[] = data.products;
+  const products: Product[] = data.products.map((product) => ({
+    ...product,
+    harga_sewa_display: convertToRupiah(product.harga_sewa),
+    profit_display: convertToRupiah(product.profit)
+  }));
 
   return (
     <ProductTable
