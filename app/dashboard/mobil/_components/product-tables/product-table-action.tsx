@@ -21,7 +21,7 @@ export default function ProductTableAction() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <DataTableSearch
-        searchKey="Plat Nomor"
+        searchKey="name"
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         setPage={setPage}

@@ -32,8 +32,8 @@ export default async function Page({ searchParams }: pageProps) {
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title="List Mobil"
-            description="Deskripsi untuk list mobil."
+            title="Products"
+            description="Manage products (Server side table functionalities.)"
           />
           <Link
             href="/dashboard/product/new"

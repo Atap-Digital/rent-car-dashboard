@@ -5,7 +5,184 @@
 import { faker } from '@faker-js/faker';
 import { matchSorter } from 'match-sorter'; // For filtering
 
+// Define the shape of User data
+
+type Gender = 'male' | 'female';
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export type User = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  zipcode: string;
+  longitude: number;
+  latitude: number;
+  gender: Gender;
+  date_of_birth: string;
+  job: string;
+  profile_picture: string;
+};
+
+// Mock user data store
+export const fakeUsers = {
+  records: [] as User[], // Holds the list of user objects
+
+  // Initialize with sample data
+  initialize() {
+    const sampleUsers: User[] = [];
+    function generateRandomUserData(id: number): User {
+      const genders = ['male', 'female'];
+      const jobs = [
+        'Software Engineer',
+        'Data Scientist',
+        'Marketing Manager',
+        'Graphic Designer',
+        'Sales Manager',
+        'Product Manager'
+      ];
+      const cities = [
+        'San Francisco',
+        'New York City',
+        'Los Angeles',
+        'Chicago',
+        'Houston',
+        'Phoenix',
+        'Philadelphia',
+        'San Antonio',
+        'San Diego',
+        'Dallas',
+        'San Jose',
+        'Austin',
+        'Jacksonville'
+      ];
+      const states = [
+        'California',
+        'New York',
+        'Texas',
+        'Florida',
+        'Illinois',
+        'Pennsylvania',
+        'Ohio',
+        'Georgia',
+        'North Carolina',
+        'Michigan'
+      ];
+
+      return {
+        id,
+        first_name: faker.person.firstName(),
+        last_name: faker.person.lastName(),
+        email: `${faker.internet.email()}`,
+        phone: `001-${Math.floor(Math.random() * 900) + 100}-${
+          Math.floor(Math.random() * 900) + 100
+        }-${Math.floor(Math.random() * 10000)}`,
+        street: `${Math.floor(
+          Math.random() * 1000
+        )} ${faker.location.street()}`,
+        city: faker.helpers.arrayElement(cities),
+        state: faker.helpers.arrayElement(states),
+        country: 'USA',
+        zipcode: faker.location.zipCode(),
+        longitude: faker.location.longitude(),
+        latitude: faker.location.latitude(),
+        gender: faker.helpers.arrayElement(genders) as Gender,
+        date_of_birth: faker.date
+          .between({ from: '1980-01-01', to: '2000-01-01' })
+          .toISOString()
+          .split('T')[0],
+        job: faker.helpers.arrayElement(jobs),
+        profile_picture: `https://api.slingacademy.com/public/sample-users/${id}.png`
+      };
+    }
+
+    // Generate remaining records
+    for (let i = 1; i <= 20; i++) {
+      sampleUsers.push(generateRandomUserData(i));
+    }
+
+    this.records = sampleUsers;
+  },
+
+  // Get all users with optional gender filtering and search
+  async getAll({
+    genders = [],
+    search
+  }: {
+    genders?: string[];
+    search?: string;
+  }) {
+    let users = [...this.records];
+
+    // Filter users based on selected genders
+    if (genders.length > 0) {
+      users = users.filter((user) => genders.includes(user.gender));
+    }
+
+    // Search functionality across multiple fields
+    if (search) {
+      users = matchSorter(users, search, {
+        keys: [
+          'first_name',
+          'last_name',
+          'email',
+          'job',
+          'city',
+          'street',
+          'state',
+          'country'
+        ]
+      });
+    }
+
+    return users;
+  },
+
+  // Get paginated results with optional gender filtering and search
+  async getUsers({
+    page = 1,
+    limit = 10,
+    genders,
+    search
+  }: {
+    page?: number;
+    limit?: number;
+    genders?: string;
+    search?: string;
+  }) {
+    const gendersArray = genders ? genders.split('.') : [];
+    console.log('gendersArray', gendersArray);
+    const allUsers = await this.getAll({ genders: gendersArray, search });
+    const totalUsers = allUsers.length;
+
+    // Pagination logic
+    const offset = (page - 1) * limit;
+    const paginatedUsers = allUsers.slice(offset, offset + limit);
+
+    // Mock current time
+    const currentTime = new Date().toISOString();
+
+    // Return paginated response
+    return {
+      success: true,
+      time: currentTime,
+      message: 'Sample data for testing and learning purposes',
+      total_users: totalUsers,
+      offset,
+      limit,
+      users: paginatedUsers
+    };
+  }
+};
+
+// Initialize sample users
+fakeUsers.initialize();
 
 // Define the shape of Product data
 export type Product = {
@@ -18,13 +195,6 @@ export type Product = {
   profit: number;
   id: number;
   updated_at: string;
-  tahun_mobil?: number;
-  kondisi_lecet?: boolean;
-  merk?: string;
-  warna?: string;
-  nama_pemilik?: string;
-  jenis_transmisi?: string;
-  jenis_bbm?: string;
 };
 
 // Mock product data store
@@ -46,9 +216,12 @@ export const fakeProducts = {
         created_at: faker.date
           .between({ from: '2022-01-01', to: '2023-12-31' })
           .toISOString(),
-        harga_sewa:
-          Math.floor(Math.random() * (18 - 1 + 1) + 1) * 25000 + 250000,
-        profit: Math.floor(Math.random() * (19 - 2 + 1) + 2) * 5000,
+        harga_sewa: parseFloat(
+          faker.commerce.price({ min: 1000000, max: 5000000, dec: 0 })
+        ),
+        profit: parseFloat(
+          faker.commerce.price({ min: 1000000, max: 5000000, dec: 0 })
+        ),
         photo_url: `https://api.slingacademy.com/public/sample-products/${id}.png`,
         deskripsi: faker.vehicle.model(),
         updated_at: faker.date.recent().toISOString()
@@ -157,156 +330,3 @@ export const fakeProducts = {
 
 // Initialize sample products
 fakeProducts.initialize();
-
-// Define the shape of Transaction data
-export type Transaction = {
-  id: number;
-  customer_name: string;
-  car_model: string;
-  rental_date: string;
-  rental_time: string;
-  return_date: string;
-  return_time: string;
-  total_amount: number;
-  status: string;
-  duration: number;
-};
-
-// Mock transaction data store
-export const fakeTransactions = {
-  records: [] as Transaction[], // Holds the list of transaction objects
-
-  // Initialize with sample data
-  initialize() {
-    const sampleTransactions: Transaction[] = [];
-    function generateRandomTransactionData(id: number): Transaction {
-      return {
-        id,
-        customer_name: faker.person.fullName(),
-        car_model: faker.vehicle.model(),
-        rental_date: faker.date.past().toISOString().split('T')[0],
-        rental_time: faker.date
-          .past()
-          .toISOString()
-          .split('T')[1]
-          .split('.')[0],
-        return_date: faker.date.future().toISOString().split('T')[0],
-        return_time: faker.date
-          .future()
-          .toISOString()
-          .split('T')[1]
-          .split('.')[0],
-        total_amount: faker.number.int({ min: 100000, max: 1000000 }),
-        status: faker.helpers.arrayElement([
-          'Pending',
-          'Completed',
-          'Cancelled'
-        ]),
-        duration: faker.number.int({ min: 1, max: 7 })
-      };
-    }
-
-    // Generate remaining records
-    for (let i = 1; i <= 20; i++) {
-      sampleTransactions.push(generateRandomTransactionData(i));
-    }
-
-    this.records = sampleTransactions;
-  },
-
-  // Get all transactions with optional status filtering and search
-  async getAll({
-    statuses = [],
-    search
-  }: {
-    statuses?: string[];
-    search?: string;
-  }) {
-    let transactions = [...this.records];
-
-    // Filter transactions based on selected statuses
-    if (statuses.length > 0) {
-      transactions = transactions.filter((transaction) =>
-        statuses.includes(transaction.status)
-      );
-    }
-
-    // Search functionality across multiple fields
-    if (search) {
-      transactions = matchSorter(transactions, search, {
-        keys: ['customer_name', 'car_model', 'status']
-      });
-    }
-
-    return transactions;
-  },
-
-  // Get paginated results with optional status filtering and search
-  async getTransactions({
-    page = 1,
-    limit = 10,
-    statuses,
-    search
-  }: {
-    page?: number;
-    limit?: number;
-    statuses?: string;
-    search?: string;
-  }) {
-    await delay(1000);
-    const statusesArray = statuses ? statuses.split('.') : [];
-    const allTransactions = await this.getAll({
-      statuses: statusesArray,
-      search
-    });
-    const totalTransactions = allTransactions.length;
-
-    // Pagination logic
-    const offset = (page - 1) * limit;
-    const paginatedTransactions = allTransactions.slice(offset, offset + limit);
-
-    // Mock current time
-    const currentTime = new Date().toISOString();
-
-    // Return paginated response
-    return {
-      success: true,
-      time: currentTime,
-      message: 'Sample data for testing and learning purposes',
-      total_transactions: totalTransactions,
-      offset,
-      limit,
-      transactions: paginatedTransactions
-    };
-  },
-
-  // Get a specific transaction by its ID
-  async getTransactionById(id: number) {
-    await delay(1000); // Simulate a delay
-
-    // Find the transaction by its ID
-    const transaction = this.records.find(
-      (transaction) => transaction.id === id
-    );
-
-    if (!transaction) {
-      return {
-        success: false,
-        message: `Transaction with ID ${id} not found`
-      };
-    }
-
-    // Mock current time
-    const currentTime = new Date().toISOString();
-
-    return {
-      success: true,
-      time: currentTime,
-      message: `Transaction with ID ${id} found`,
-      transaction
-    };
-  }
-};
-
-// Initialize sample transactions
-fakeTransactions.initialize();
