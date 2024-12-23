@@ -5,6 +5,13 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
+import { CalendarIcon } from 'lucide-react';
+import { Calendar } from '@/components/ui/calendar';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -32,6 +39,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 
+import { format } from 'date-fns';
 interface ProfileFormType {
   initialData: any | null;
   categories: any;
@@ -54,6 +62,8 @@ const ProfileCreateForm: React.FC<ProfileFormType> = ({
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState({});
+  const [date, setDate] = useState<Date>();
+
   const delta = currentStep - previousStep;
 
   const defaultValues = {
@@ -450,6 +460,7 @@ const ProfileCreateForm: React.FC<ProfileFormType> = ({
                               </FormItem>
                             )}
                           />
+
                           <FormField
                             control={form.control}
                             name={`jobs.${index}.startdate`}
