@@ -138,6 +138,26 @@ export type Product = {
   profit: number;
   id: number;
   updated_at: string;
+  tahun_mobil?: number;
+  kondisi_lecet?: boolean;
+  merk?: string;
+  warna?: string;
+  nama_pemilik?: string;
+  jenis_transmisi?: string;
+  jenis_bbm?: string;
+};
+
+export type Transaction = {
+  id: number;
+  customer_name: string;
+  car_model: string;
+  rental_date: string;
+  rental_time: string;
+  return_date: string;
+  return_time: string;
+  total_amount: number;
+  status: string;
+  duration: number;
 };
 
 export const navItems: NavItem[] = [

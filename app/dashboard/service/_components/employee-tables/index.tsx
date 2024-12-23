@@ -4,29 +4,30 @@ import { DataTable } from '@/components/ui/table/data-table';
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
-import { Employee } from '@/constants/data';
-import { columns } from './columns';
+import { Transaction } from '@/constants/data';
+import { columns } from '../employee-tables/columns';
+
 import {
-  GENDER_OPTIONS,
-  useEmployeeTableFilters
+  useTransactionTableFilters,
+  STATUS_OPTIONS
 } from './use-employee-table-filters';
 
-export default function EmployeeTable({
+export default function TransactionTable({
   data,
   totalData
 }: {
-  data: Employee[];
+  data: Transaction[];
   totalData: number;
 }) {
   const {
-    genderFilter,
-    setGenderFilter,
+    statusFilter,
+    setStatusFilter,
     isAnyFilterActive,
     resetFilters,
     searchQuery,
     setPage,
     setSearchQuery
-  } = useEmployeeTableFilters();
+  } = useTransactionTableFilters();
 
   return (
     <div className="space-y-4">
@@ -38,11 +39,11 @@ export default function EmployeeTable({
           setPage={setPage}
         />
         <DataTableFilterBox
-          filterKey="gender"
-          title="Gender"
-          options={GENDER_OPTIONS}
-          setFilterValue={setGenderFilter}
-          filterValue={genderFilter}
+          filterKey="status"
+          title="Status"
+          options={STATUS_OPTIONS}
+          setFilterValue={setStatusFilter}
+          filterValue={statusFilter}
         />
         <DataTableResetFilter
           isFilterActive={isAnyFilterActive}

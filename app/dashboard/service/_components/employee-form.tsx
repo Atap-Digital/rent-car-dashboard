@@ -36,12 +36,12 @@ const formSchema = z.object({
   company: z.string().min(1, {
     message: 'Company name is required.'
   }),
-  gender: z.enum(['male', 'female', 'other'], {
-    required_error: 'Please select a gender.'
+  status: z.enum(['pending', 'completed', 'cancelled'], {
+    required_error: 'Please select a status.'
   })
 });
 
-export default function EmployeeForm() {
+export default function TransactionForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,7 +49,7 @@ export default function EmployeeForm() {
       country: '',
       email: '',
       company: '',
-      gender: undefined
+      status: undefined
     }
   });
 
@@ -141,10 +141,10 @@ export default function EmployeeForm() {
             </div>
             <FormField
               control={form.control}
-              name="gender"
+              name="status"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel>Gender</FormLabel>
+                  <FormLabel>Status</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -153,21 +153,21 @@ export default function EmployeeForm() {
                     >
                       <FormItem className="flex items-center space-x-2">
                         <FormControl>
-                          <RadioGroupItem value="male" />
+                          <RadioGroupItem value="pending" />
                         </FormControl>
-                        <FormLabel className="font-normal">Male</FormLabel>
+                        <FormLabel className="font-normal">Pending</FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-2">
                         <FormControl>
-                          <RadioGroupItem value="female" />
+                          <RadioGroupItem value="completed" />
                         </FormControl>
-                        <FormLabel className="font-normal">Female</FormLabel>
+                        <FormLabel className="font-normal">Completed</FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-2">
                         <FormControl>
-                          <RadioGroupItem value="other" />
+                          <RadioGroupItem value="cancelled" />
                         </FormControl>
-                        <FormLabel className="font-normal">Other</FormLabel>
+                        <FormLabel className="font-normal">Cancelled</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
