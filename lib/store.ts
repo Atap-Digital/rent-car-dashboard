@@ -26,6 +26,7 @@ export type State = {
   tasks: Task[];
   columns: Column[];
   draggedTask: string | null;
+  isGridView: boolean; // New state for view
 };
 
 const initialTasks: Task[] = [
@@ -50,6 +51,7 @@ export type Actions = {
   setTasks: (updatedTask: Task[]) => void;
   setCols: (cols: Column[]) => void;
   updateCol: (id: UniqueIdentifier, newName: string) => void;
+  toggleView: () => void; // New action for toggling view
 };
 
 export const useTaskStore = create<State & Actions>()(
@@ -58,6 +60,7 @@ export const useTaskStore = create<State & Actions>()(
       tasks: initialTasks,
       columns: defaultCols,
       draggedTask: null,
+      isGridView: false, // Initial view state
       addTask: (title: string, description?: string) =>
         set((state) => ({
           tasks: [
@@ -88,7 +91,8 @@ export const useTaskStore = create<State & Actions>()(
           columns: state.columns.filter((col) => col.id !== id)
         })),
       setTasks: (newTasks: Task[]) => set({ tasks: newTasks }),
-      setCols: (newCols: Column[]) => set({ columns: newCols })
+      setCols: (newCols: Column[]) => set({ columns: newCols }),
+      toggleView: () => set((state) => ({ isGridView: !state.isGridView })) // Toggle view action
     }),
     { name: 'task-store', skipHydration: true }
   )

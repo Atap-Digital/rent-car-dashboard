@@ -38,8 +38,8 @@ export default function TransactionTable({
           setPage={setPage}
         />
         <DataTableFilterBox
-          filterKey="status"
-          title="Status"
+          filterKey="statuses"
+          title="Statuses"
           options={STATUS_OPTIONS}
           setFilterValue={setStatusFilter}
           filterValue={statusFilter}

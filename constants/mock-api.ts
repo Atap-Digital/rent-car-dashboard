@@ -75,16 +75,20 @@ export const fakeProducts = {
 
     // Filter products based on selected categories
     if (categories.length > 0) {
+      console.log('Filtering products by categories:', categories);
       products = products.filter((product) =>
         categories.includes(product.plat_nomor)
       );
+      console.log('Filtered products:', products);
     }
 
     // Search functionality across multiple fields
     if (search) {
+      console.log('Searching products with search term:', search);
       products = matchSorter(products, search, {
         keys: ['plat_nomor']
       });
+      console.log('Searched products:', products);
     }
 
     return products;
@@ -226,16 +230,20 @@ export const fakeTransactions = {
 
     // Filter transactions based on selected statuses
     if (statuses.length > 0) {
+      console.log('Filtering transactions by statuses:', statuses);
       transactions = transactions.filter((transaction) =>
         statuses.includes(transaction.status)
       );
+      console.log('Filtered transactions:', transactions);
     }
 
     // Search functionality across multiple fields
     if (search) {
+      console.log('Searching transactions with search term:', search);
       transactions = matchSorter(transactions, search, {
         keys: ['customer_name', 'car_model', 'status']
       });
+      console.log('Searched transactions:', transactions);
     }
 
     return transactions;

@@ -3,6 +3,7 @@
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
+
 import {
   CATEGORY_OPTIONS,
   useProductTableFilters
@@ -18,6 +19,7 @@ export default function ProductTableAction() {
     setPage,
     setSearchQuery
   } = useProductTableFilters();
+
   return (
     <div className="flex flex-wrap items-center gap-4">
       <DataTableSearch

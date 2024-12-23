@@ -16,14 +16,14 @@ export default async function TransactionListingPage({}: TTransactionListingPage
   // Showcasing the use of search params cache in nested RSCs
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
-  const status = searchParamsCache.get('status');
+  const statuses = searchParamsCache.get('statuses');
   const pageLimit = searchParamsCache.get('limit');
 
   const filters = {
     page,
     limit: pageLimit,
     ...(search && { search }),
-    ...(status && { status: status })
+    ...(statuses && { statuses: statuses })
   };
 
   // mock api call

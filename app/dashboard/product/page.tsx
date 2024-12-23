@@ -11,6 +11,8 @@ import { SearchParams } from 'nuqs/parsers';
 import { Suspense } from 'react';
 import ProductListingPage from './_components/product-listing';
 import ProductTableAction from './_components/product-tables/product-table-action';
+import { Switch } from '@/components/ui/switch';
+import { useTaskStore } from '@/lib/store';
 
 export const metadata = {
   title: 'Dashboard: Products'
@@ -44,6 +46,7 @@ export default async function Page({ searchParams }: pageProps) {
         </div>
         <Separator />
         <ProductTableAction />
+
         <Suspense
           key={key}
           fallback={<DataTableSkeleton columnCount={5} rowCount={10} />}

@@ -19,8 +19,8 @@ export function useTransactionTableFilters() {
   );
 
   const [statusFilter, setStatusFilter] = useQueryState(
-    'status',
-    searchParams.status.withOptions({ shallow: false }).withDefault('')
+    'statuses',
+    searchParams.statuses.withOptions({ shallow: false }).withDefault('')
   );
 
   const [page, setPage] = useQueryState(
