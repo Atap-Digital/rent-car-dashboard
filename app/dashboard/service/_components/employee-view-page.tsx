@@ -1,11 +1,11 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
-import TransactionForm from './employee-form';
+import EmployeeForm from './employee-form';
 import PageContainer from '@/components/layout/page-container';
 
-export default function TransactionViewPage() {
+export default function EmployeeViewPage() {
   return (
     <PageContainer>
-      <TransactionForm />
+      <EmployeeForm />
     </PageContainer>
   );
 }

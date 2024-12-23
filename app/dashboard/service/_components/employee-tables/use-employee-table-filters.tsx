@@ -4,13 +4,12 @@ import { searchParams } from '@/lib/searchparams';
 import { useQueryState } from 'nuqs';
 import { useCallback, useMemo } from 'react';
 
-export const STATUS_OPTIONS = [
-  { value: 'Pending', label: 'Pending' },
-  { value: 'Completed', label: 'Completed' },
-  { value: 'Cancelled', label: 'Cancelled' }
+export const GENDER_OPTIONS = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' }
 ];
 
-export function useTransactionTableFilters() {
+export function useEmployeeTableFilters() {
   const [searchQuery, setSearchQuery] = useQueryState(
     'q',
     searchParams.q
@@ -18,9 +17,9 @@ export function useTransactionTableFilters() {
       .withDefault('')
   );
 
-  const [statusFilter, setStatusFilter] = useQueryState(
-    'status',
-    searchParams.status.withOptions({ shallow: false }).withDefault('')
+  const [genderFilter, setGenderFilter] = useQueryState(
+    'gender',
+    searchParams.gender.withOptions({ shallow: false }).withDefault('')
   );
 
   const [page, setPage] = useQueryState(
@@ -30,20 +29,20 @@ export function useTransactionTableFilters() {
 
   const resetFilters = useCallback(() => {
     setSearchQuery(null);
-    setStatusFilter(null);
+    setGenderFilter(null);
 
     setPage(1);
-  }, [setSearchQuery, setStatusFilter, setPage]);
+  }, [setSearchQuery, setGenderFilter, setPage]);
 
   const isAnyFilterActive = useMemo(() => {
-    return !!searchQuery || !!statusFilter;
-  }, [searchQuery, statusFilter]);
+    return !!searchQuery || !!genderFilter;
+  }, [searchQuery, genderFilter]);
 
   return {
     searchQuery,
     setSearchQuery,
-    statusFilter,
-    setStatusFilter,
+    genderFilter,
+    setGenderFilter,
     page,
     setPage,
     resetFilters,

@@ -30,11 +30,11 @@ export const columns: ColumnDef<Product>[] = [
     header: 'Plat Nomor'
   },
   {
-    accessorKey: 'harga_sewa_display',
+    accessorKey: 'harga_sewa',
     header: 'Harga Sewa'
   },
   {
-    accessorKey: 'profit_display',
+    accessorKey: 'profit',
     header: 'Profit'
   },
   {
