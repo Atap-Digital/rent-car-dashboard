@@ -7,14 +7,15 @@ import { CellAction } from './cell-action';
 export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: 'photo_url',
-    header: 'Gambar',
+    header: () => <div className="text-center">Gambar</div>,
     cell: ({ row }) => {
       return (
-        <div className="relative aspect-square">
+        <div className="flex justify-center">
           <Image
             src={row.getValue('photo_url')}
             alt={row.getValue('name')}
-            fill
+            width={100}
+            height={100}
             className="rounded-lg"
           />
         </div>

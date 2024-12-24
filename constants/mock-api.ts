@@ -222,7 +222,7 @@ export const fakeProducts = {
         profit: parseFloat(
           faker.commerce.price({ min: 1000000, max: 5000000, dec: 0 })
         ),
-        photo_url: `https://api.slingacademy.com/public/sample-products/${id}.png`,
+        photo_url: '/Mercedes Car PNG.png',
         deskripsi: faker.vehicle.model(),
         updated_at: faker.date.recent().toISOString()
       };
@@ -330,7 +330,7 @@ export const fakeProducts = {
 
 // Initialize sample products
 fakeProducts.initialize();
-
+type Status = 'Confirmed' | 'Pending' | 'Cancelled';
 // Define the shape of Booking data
 export type Booking = {
   id: number;
@@ -340,7 +340,7 @@ export type Booking = {
   isWithDriver: boolean;
   driver_name?: string;
   duration: number;
-  status: string;
+  status: Status;
   amount: number;
   payment_status: string;
   start_date: string;

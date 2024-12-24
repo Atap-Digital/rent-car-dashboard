@@ -5,9 +5,9 @@ import { useQueryState } from 'nuqs';
 import { useCallback, useMemo } from 'react';
 
 export const STATUS_OPTIONS = [
-  { value: 'pending', label: 'Pending' },
-  { value: 'confirmed', label: 'Confirmed' },
-  { value: 'cancelled', label: 'Cancelled' }
+  { value: 'Pending', label: 'Pending' },
+  { value: 'Confirmed', label: 'Confirmed' },
+  { value: 'Cancelled', label: 'Cancelled' }
 ];
 
 export function useBookingTableFilters() {
