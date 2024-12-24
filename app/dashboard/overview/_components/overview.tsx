@@ -98,7 +98,7 @@ const data = {
 
 export default function OverViewPage() {
   return (
-    <PageContainer scrollable>
+    <PageContainer scrollable showRightContainer>
       <div className="space-y-2">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">
@@ -152,6 +152,15 @@ export default function OverViewPage() {
               </Card>
               <div className="col-span-4">
                 <AreaGraph />
+              </div>
+              <div className="col-span-4 md:col-span-3">
+                <PieGraph />
+              </div>
+              <div className="col-span-4 md:col-span-3">
+                <PieGraph />
+              </div>
+              <div className="col-span-4 md:col-span-3">
+                <PieGraph />
               </div>
               <div className="col-span-4 md:col-span-3">
                 <PieGraph />
