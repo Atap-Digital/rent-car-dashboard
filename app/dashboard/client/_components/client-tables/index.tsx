@@ -4,18 +4,18 @@ import { DataTable } from '@/components/ui/table/data-table';
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
-import { Driver } from '@/constants/data';
+import { Client } from '@/constants/data';
 import { columns } from './columns';
 import {
   GENDER_OPTIONS,
-  useDriverTableFilters
-} from './use-driver-table-filters';
+  useClientTableFilters
+} from './use-client-table-filters';
 
-export default function DriverTable({
+export default function ClientTable({
   data,
   totalData
 }: {
-  data: Driver[];
+  data: Client[];
   totalData: number;
 }) {
   const {
@@ -26,7 +26,7 @@ export default function DriverTable({
     searchQuery,
     setPage,
     setSearchQuery
-  } = useDriverTableFilters();
+  } = useClientTableFilters();
 
   return (
     <div className="space-y-4">

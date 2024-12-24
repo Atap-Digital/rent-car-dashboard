@@ -32,14 +32,14 @@ export default async function Page({ searchParams }: pageProps) {
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title="Products"
-            description="Manage products (Server side table functionalities.)"
+            title="Daftar Mobil"
+            description="Tabel berikut menampilkan daftar mobil yang tersedia"
           />
           <Link
-            href="/dashboard/product/new"
+            href="/dashboard/mobil/new"
             className={cn(buttonVariants(), 'text-xs md:text-sm')}
           >
-            <Plus className="mr-2 h-4 w-4" /> Add New
+            <Plus className="mr-2 h-4 w-4" /> Tambah Data
           </Link>
         </div>
         <Separator />

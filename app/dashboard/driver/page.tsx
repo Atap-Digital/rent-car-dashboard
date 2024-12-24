@@ -8,7 +8,7 @@ type pageProps = {
 };
 
 export const metadata = {
-  title: 'Akuntansi: Data Cashflow'
+  title: 'Dashboard - Driver'
 };
 
 export default async function Page({ searchParams }: pageProps) {

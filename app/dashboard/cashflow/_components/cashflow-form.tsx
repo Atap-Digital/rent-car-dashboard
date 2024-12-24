@@ -32,7 +32,7 @@ const formSchema = z.object({
   })
 });
 
-export default function DriverForm() {
+export default function CashflowForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,7 +50,7 @@ export default function DriverForm() {
     <Card className="mx-auto w-full">
       <CardHeader>
         <CardTitle className="text-left text-2xl font-bold">
-          Driver Information
+          Cashflow Information
         </CardTitle>
       </CardHeader>
       <CardContent>

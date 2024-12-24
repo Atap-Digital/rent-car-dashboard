@@ -1,10 +1,10 @@
 'use client';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Driver } from '@/constants/data';
+import { Booking } from '@/constants/data';
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
 
-export const columns: ColumnDef<Driver>[] = [
+export const columns: ColumnDef<Booking>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -25,20 +25,24 @@ export const columns: ColumnDef<Driver>[] = [
     enableHiding: false
   },
   {
-    accessorKey: 'name',
-    header: 'Nama'
+    accessorKey: 'first_name',
+    header: 'NAME'
+  },
+  {
+    accessorKey: 'country',
+    header: 'COUNTRY'
   },
   {
     accessorKey: 'email',
-    header: 'Email'
+    header: 'EMAIL'
   },
   {
-    accessorKey: 'phone',
-    header: 'Phone'
+    accessorKey: 'job',
+    header: 'COMPANY'
   },
   {
-    accessorKey: 'status',
-    header: 'Status'
+    accessorKey: 'gender',
+    header: 'GENDER'
   },
   {
     id: 'actions',
