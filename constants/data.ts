@@ -139,6 +139,22 @@ export type Product = {
   id: number;
   updated_at: string;
 };
+export type Booking = {
+  id: number;
+  booking_date: string;
+  customer_name: string;
+  car_model: string;
+  isWithDriver: boolean;
+  driver_name?: string;
+  duration: number;
+  status: string;
+  amount: number;
+  payment_status: string;
+  start_date: string;
+  end_date: string;
+  created_at: string;
+  updated_at: string;
+};
 
 export const navItems: NavItem[] = [
   {

@@ -4,29 +4,29 @@ import { DataTable } from '@/components/ui/table/data-table';
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
-import { Driver } from '@/constants/data';
+import { Booking } from '@/constants/data';
 import { columns } from './columns';
 import {
-  GENDER_OPTIONS,
-  useDriverTableFilters
+  STATUS_OPTIONS,
+  useBookingTableFilters
 } from './use-driver-table-filters';
 
 export default function DriverTable({
   data,
   totalData
 }: {
-  data: Driver[];
+  data: Booking[];
   totalData: number;
 }) {
   const {
-    genderFilter,
-    setGenderFilter,
+    statusFilter,
+    setStatusFilter,
     isAnyFilterActive,
     resetFilters,
     searchQuery,
     setPage,
     setSearchQuery
-  } = useDriverTableFilters();
+  } = useBookingTableFilters();
 
   return (
     <div className="space-y-4">
@@ -38,11 +38,11 @@ export default function DriverTable({
           setPage={setPage}
         />
         <DataTableFilterBox
-          filterKey="gender"
-          title="Gender"
-          options={GENDER_OPTIONS}
-          setFilterValue={setGenderFilter}
-          filterValue={genderFilter}
+          filterKey="statuses"
+          title="Status"
+          options={STATUS_OPTIONS}
+          setFilterValue={setStatusFilter}
+          filterValue={statusFilter}
         />
         <DataTableResetFilter
           isFilterActive={isAnyFilterActive}

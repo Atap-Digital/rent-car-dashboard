@@ -5,7 +5,7 @@ import RightContainer from './right-container';
 export default function PageContainer({
   children,
   scrollable = true,
-  showRightContainer = true
+  showRightContainer = false
 }: {
   children: React.ReactNode;
   scrollable?: boolean;
