@@ -4,18 +4,18 @@ import { DataTable } from '@/components/ui/table/data-table';
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
-import { Driver } from '@/constants/data';
+import { Cashflow } from '@/constants/data';
 import { columns } from './columns';
 import {
-  GENDER_OPTIONS,
-  useDriverTableFilters
-} from './use-driver-table-filters';
+  // Cashflow_OPTIONS,
+  useCashflowTableFilters
+} from './use-cashflow-table-filters';
 
-export default function DriverTable({
+export default function CashflowTable({
   data,
   totalData
 }: {
-  data: Driver[];
+  data: Cashflow[];
   totalData: number;
 }) {
   const {
@@ -26,7 +26,7 @@ export default function DriverTable({
     searchQuery,
     setPage,
     setSearchQuery
-  } = useDriverTableFilters();
+  } = useCashflowTableFilters();
 
   return (
     <div className="space-y-4">
@@ -37,10 +37,11 @@ export default function DriverTable({
           setSearchQuery={setSearchQuery}
           setPage={setPage}
         />
+
         {/* <DataTableFilterBox
           filterKey="gender"
           title="Gender"
-          options={GENDER_OPTIONS}
+          options=Cashflow_OPTIONS}
           setFilterValue={setGenderFilter}
           filterValue={genderFilter}
         /> */}

@@ -1,7 +1,7 @@
 import { searchParamsCache } from '@/lib/searchparams';
 import { SearchParams } from 'nuqs/parsers';
 import React from 'react';
-import KeuanganListingPage from './_components/cashflow-listing-page';
+import KeuanganListingPage from './_components/keuangan-listing-page';
 
 type pageProps = {
   searchParams: SearchParams;

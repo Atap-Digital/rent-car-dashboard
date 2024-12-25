@@ -3,16 +3,16 @@ import { buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { Driver } from '@/constants/data';
-import { fakeUsers } from '@/constants/mock-api';
+import { fakeDriver } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import DriverTable from './driver-tables';
 
-type TDriverListingPage = {};
+type TClientListingPage = {};
 
-export default async function DriverListingPage({}: TDriverListingPage) {
+export default async function ClientListingPage({}: TClientListingPage) {
   // Showcasing the use of search params cache in nested RSCs
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
@@ -27,28 +27,292 @@ export default async function DriverListingPage({}: TDriverListingPage) {
   };
 
   // mock api call
-  const data = await fakeUsers.getUsers(filters);
-  const totalUsers = data.total_users;
-  const driver: Driver[] = data.users;
+  const data = await fakeDriver.getDrivers(filters);
+  const totalUsers = data.total_drivers;
+  const driver: Driver[] = data.drivers;
 
   return (
     <PageContainer scrollable>
       <div className="space-y-4">
-        <div className="flex items-start justify-between">
-          <Heading
-            title={`Driver (${totalUsers})`}
-            description="Manage driver (Server side table functionalities.)"
-          />
+        <div className="flex flex-col md:flex-row md:space-x-4 ">
+          {/* Main Content */}
+          <div className="flex-1 md:w-8/12">
+            {' '}
+            {/* Equivalent to col-md-9 */}
+            <div className="flex items-start justify-between">
+              <Heading title={`Driver`} description="Menampilkan data driver" />
 
-          <Link
-            href={'/dashboard/driver/new'}
-            className={cn(buttonVariants({ variant: 'default' }))}
-          >
-            <Plus className="mr-2 h-4 w-4" /> Add New
-          </Link>
+              <Link
+                href={'/dashboard/driver/new'}
+                className={cn(buttonVariants({ variant: 'default' }))}
+              >
+                <Plus className="mr-2 h-4 w-4" /> Add Driver
+              </Link>
+            </div>
+            <Separator />
+            <DriverTable data={driver} totalData={totalUsers} />
+          </div>
+          {/* Sidebar */}
+          <div className="w-full space-y-4 md:w-4/12">
+            {/* Card: Driver Details */}
+            <div className="rounded-md bg-white p-4 shadow-sm">
+              <div>
+                <h3 className="text-base font-semibold">John Doe</h3>
+                <span className="mb-4 inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
+                  On Duty
+                </span>
+              </div>
+              <div className="rounded-md bg-gray-50 p-4">
+                <ul className="mb-4 space-y-2 text-sm">
+                  <li>
+                    <strong>Email </strong> john.doe@example.com
+                  </li>
+                  <li>
+                    <strong>Phone:</strong> (123) 456-7890
+                  </li>
+
+                  <li>
+                    <strong>Address:</strong>
+                    <span className="break-words">
+                      Jl. Ancar 1 No 1 BTN Kekalik Baru
+                    </span>
+                  </li>
+                </ul>
+                <Separator />
+                <div className="mt-4 flex items-center space-x-2">
+                  <svg
+                    className="h-5 w-5 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">
+                      Work Hours
+                    </div>
+                    <div className="text-xs text-gray-500">380 hours</div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 rounded-md bg-gray-50 p-4">
+                <h3 className="mb-2 text-base font-semibold">Agustus</h3>
+                <div className="rounded-md bg-gray-50 p-4">
+                  <p className="text-center text-sm text-gray-500">
+                    [Calendar Component]
+                  </p>
+                </div>
+                <h3 className="mb-2 mt-4 text-base font-semibold">Schedule</h3>
+                <div className="max-h-64 overflow-y-auto">
+                  <ul className="space-y-2 text-sm">
+                    <li className="mb-4 flex justify-between">
+                      <div className="font-semibold">Aug 1</div>
+                      <div>
+                        <strong className="mr-2">Alice Johnson</strong>
+                        <div className="flex items-center">
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="mr-2">11:00 AM</span>
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 11h14M5 7h14M5 15h14"
+                            />
+                          </svg>
+                          <span>Toyota Camri</span>
+                        </div>
+                      </div>
+                    </li>
+                    <Separator />
+                    <li className="mb-4 flex justify-between">
+                      <div className="font-semibold">Aug 3</div>
+                      <div>
+                        <strong className="mr-2">Charlie Puth</strong>
+                        <div className="flex items-center">
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="mr-1">11:00 AM</span>
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 11h14M5 7h14M5 15h14"
+                            />
+                          </svg>
+                          <span>Avanza Reborn</span>
+                        </div>
+                      </div>
+                    </li>
+                    <Separator />
+                    <li className="mb-4 flex justify-between">
+                      <div className="font-semibold">Aug 3</div>
+                      <div>
+                        <strong className="mr-2">Charlie Puth</strong>
+                        <div className="flex items-center">
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="mr-1">11:00 AM</span>
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 11h14M5 7h14M5 15h14"
+                            />
+                          </svg>
+                          <span>Avanza Reborn</span>
+                        </div>
+                      </div>
+                    </li>
+                    <Separator />
+                    <li className="mb-4 flex justify-between">
+                      <div className="font-semibold">Aug 3</div>
+                      <div>
+                        <strong className="mr-2">Charlie Puth</strong>
+                        <div className="flex items-center">
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="mr-1">11:00 AM</span>
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 11h14M5 7h14M5 15h14"
+                            />
+                          </svg>
+                          <span>Avanza Reborn</span>
+                        </div>
+                      </div>
+                    </li>
+                    <Separator />
+                    <li className="mb-4 flex justify-between">
+                      <div className="font-semibold">Aug 3</div>
+                      <div>
+                        <strong className="mr-2">Charlie Puth</strong>
+                        <div className="flex items-center">
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="mr-1">11:00 AM</span>
+                          <svg
+                            className="mr-1 h-4 w-4 text-gray-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 11h14M5 7h14M5 15h14"
+                            />
+                          </svg>
+                          <span>Avanza Reborn</span>
+                        </div>
+                      </div>
+                    </li>
+                    <Separator />
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <Separator />
-        <DriverTable data={driver} totalData={totalUsers} />
       </div>
     </PageContainer>
   );

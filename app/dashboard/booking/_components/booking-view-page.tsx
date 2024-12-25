@@ -1,10 +1,10 @@
-import DriverForm from './driver-form';
+import BookingForm from './booking-form';
 import PageContainer from '@/components/layout/page-container';
 
-export default function ClientPage() {
+export default function DriverViewPage() {
   return (
     <PageContainer>
-      <DriverForm />
+      <BookingForm />
     </PageContainer>
   );
 }

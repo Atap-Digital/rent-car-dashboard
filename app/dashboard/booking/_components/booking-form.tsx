@@ -27,16 +27,27 @@ const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name must be at least 2 characters.'
   }),
+  country: z.string({
+    required_error: 'Please select a country.'
+  }),
+  email: z.string().email({
+    message: 'Please enter a valid email address.'
+  }),
+  company: z.string().min(1, {
+    message: 'Company name is required.'
+  }),
   gender: z.enum(['male', 'female', 'other'], {
     required_error: 'Please select a gender.'
   })
 });
 
-export default function DriverForm() {
+export default function BookingForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
+      country: '',
+      email: '',
       company: '',
       gender: undefined
     }
@@ -50,7 +61,7 @@ export default function DriverForm() {
     <Card className="mx-auto w-full">
       <CardHeader>
         <CardTitle className="text-left text-2xl font-bold">
-          Driver Information
+          Booking Information
         </CardTitle>
       </CardHeader>
       <CardContent>
