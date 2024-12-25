@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Cashflow } from '@/constants/data';
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
+import { Badge } from '@/components/ui/badge';
 
 export const columns: ColumnDef<Cashflow>[] = [
   {
@@ -46,7 +47,23 @@ export const columns: ColumnDef<Cashflow>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status'
+    header: 'Status',
+    cell: ({ row }) => {
+      const status = row.original.status;
+      const statusColor =
+        status === 'Approved'
+          ? 'bg-green-100 text-green-800'
+          : status === 'Pending'
+          ? 'bg-yellow-100 text-yellow-800'
+          : 'bg-red-100 text-red-800';
+      return (
+        <Badge
+          className={`mb-4 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium hover:bg-white ${statusColor}`}
+        >
+          {status}
+        </Badge>
+      );
+    }
   },
   {
     id: 'actions',
