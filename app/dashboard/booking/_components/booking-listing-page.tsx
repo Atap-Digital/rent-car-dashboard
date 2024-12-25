@@ -13,14 +13,11 @@ import Link from 'next/link';
 
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Component as BarChart } from './bar-chart';
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
-import { ChartConfig, ChartTooltip } from '@/components/ui/chart';
-import { ChartTooltipContent } from '@/components/ui/chart';
-import { ChartContainer } from '@/components/ui/chart';
+
 type TBookingListingPage = {};
 import BookingTable from './booking-tables';
 
-export default async function BookingListingPage({}: TDriverListingPage) {
+export default async function BookingListingPage({}: TBookingListingPage) {
   // Showcasing the use of search params cache in nested RSCs
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');

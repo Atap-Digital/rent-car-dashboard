@@ -101,13 +101,7 @@ export type Service = {
   fee: number;
   photo_url: string;
 };
-export type Booking = {
-  id: number;
-  first_name: string;
-  latitude?: number; // Optional field
-  job: string;
-  profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
-};
+
 export type RiwayatTransaksi = {
   id: number;
   first_name: string;

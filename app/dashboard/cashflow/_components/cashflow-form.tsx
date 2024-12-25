@@ -27,9 +27,12 @@ const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Name must be at least 2 characters.'
   }),
+  company: z.string().optional(),
   gender: z.enum(['male', 'female', 'other'], {
     required_error: 'Please select a gender.'
-  })
+  }),
+  email: z.string().email({ message: 'Invalid email address.' }),
+  country: z.string().optional()
 });
 
 export default function CashflowForm() {
