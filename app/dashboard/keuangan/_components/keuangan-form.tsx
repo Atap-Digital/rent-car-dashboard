@@ -37,7 +37,6 @@ export default function KeuanganForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      company: '',
       gender: undefined
     }
   });
