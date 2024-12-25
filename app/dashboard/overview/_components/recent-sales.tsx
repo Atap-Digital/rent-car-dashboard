@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type Rental = {
   carPhotoUrl: string;
   carType: string;
@@ -60,7 +62,13 @@ export function RecentRentals() {
     <div className="space-y-8">
       {rentalData.map((rental, index) => (
         <div key={index} className="flex items-center">
-          <img src={rental.carPhotoUrl} alt="Car Photo" className="h-9 w-9" />
+          <Image
+            src="/Mercedes Car PNG.png"
+            alt="Car Photo"
+            className="object-cover"
+            width={120}
+            height={120}
+          />
           <div className="ml-4 space-y-1">
             <p className="text-sm font-medium leading-none">{rental.carType}</p>
             <p className="text-sm text-muted-foreground">

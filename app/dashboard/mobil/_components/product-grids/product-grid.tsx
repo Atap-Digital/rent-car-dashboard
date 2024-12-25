@@ -11,12 +11,15 @@ import { Product } from '@/constants/mock-api';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MoreHorizontal } from 'lucide-react'; // Assuming you have this icon or similar
+import { MoreHorizontal } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+// Assuming you have this icon or similar
 interface ProductGridProps {
   products: Product[];
 }
 
 export default function ProductGrid({ products }: ProductGridProps) {
+  const router = useRouter();
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {products.map((product) => (
@@ -61,7 +64,12 @@ export default function ProductGrid({ products }: ProductGridProps) {
               <span className="rounded bg-secondary px-2 py-1 ">Bensin</span>
             </div>
             <div className="mt-4 flex flex-row items-center space-x-2">
-              <Button className="w-full ">Pilih Mobil</Button>
+              <Button
+                className="w-full"
+                onClick={() => router.push(`/dashboard/mobil/${product.id}`)}
+              >
+                Pilih Mobil
+              </Button>
               <Button className="p-2" variant="secondary">
                 <MoreHorizontal className="h-5 w-5" />
               </Button>
