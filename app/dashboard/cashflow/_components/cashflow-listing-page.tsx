@@ -20,6 +20,7 @@ import { BarGraph } from '../../overview/_components/bar-graph';
 import { RecentRentals } from '../../overview/_components/recent-sales';
 import { AreaGraph } from '../../overview/_components/area-graph';
 import { PieGraph } from '../../overview/_components/pie-graph';
+import LastTransaction from '@/components/ui/last-transaction';
 
 type TCashflowListingPage = {};
 
@@ -134,11 +135,11 @@ export default async function CashflowListingPage({}: TCashflowListingPage) {
           <Plus className="mr-2 h-4 w-4" /> Add Cashflow
         </Link>
       </div>
-      <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-12">
+      <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-12 lg:grid-cols-12">
         {/* Main Content Section - col-md-9 */}
-        <div className="col-span-12 md:col-span-9">
+        <div className="col-span-8 md:col-span-8 lg:col-span-12">
           {/* Data Cards */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
             {Object.values(dataCard).map((item, index) => (
               <Card key={index}>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -160,20 +161,14 @@ export default async function CashflowListingPage({}: TCashflowListingPage) {
             <BarGraph />
           </div>
         </div>
-
-        {/* Sidebar Section - col-md-3 */}
-        <div className="col-span-12 md:col-span-3">
-          <Card className="flex max-h-[calc(109vh-200px)] flex-col">
-            <CardHeader>
-              <CardTitle>Pengeluaran Terakhir</CardTitle>
-              <CardDescription>
-                Berikut adalah 5 data pengeluaran terakhir.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow overflow-y-auto">
-              <RecentRentals />
-            </CardContent>
-          </Card>
+        <div className="col-span-4 md:col-span-4 lg:col-span-12">
+          {/* Other content */}
+          <LastTransaction
+            title="Pengeluaran Terakhir"
+            description="Berikut adalah 5 data pengeluaran terakhir."
+          >
+            <RecentRentals />
+          </LastTransaction>
         </div>
       </div>
       <div className="space-y-4">

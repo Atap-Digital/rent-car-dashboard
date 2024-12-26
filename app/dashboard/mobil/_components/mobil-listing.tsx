@@ -2,9 +2,9 @@ import { Product } from '@/constants/data';
 import { fakeProducts } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 import { DataTable as ProductTable } from '@/components/ui/table/data-table';
-import { columns } from './product-tables/columns';
+import { columns } from './mobil-tables/columns';
 
-import ProductGrid from './product-grids/product-grid';
+import ProductGrid from './mobil-grids/product-grid';
 type ProductListingPage = { viewMode: 'grid' | 'table' };
 
 export default async function ProductListingPage({

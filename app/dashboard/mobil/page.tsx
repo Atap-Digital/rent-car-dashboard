@@ -9,8 +9,8 @@ import { Grid, Grid2X2Icon, List, ListIcon, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { SearchParams } from 'nuqs/parsers';
 import { Suspense } from 'react';
-import ProductListingPage from './_components/product-listing';
-import ProductTableAction from './_components/product-tables/product-table-action';
+import ProductListingPage from './_components/mobil-listing';
+import ProductTableAction from './_components/mobil-tables/mobil-table-action';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export const metadata = {
@@ -34,8 +34,8 @@ export default async function Page({ searchParams }: pageProps) {
         <div className="space-y-4">
           <div className="flex items-start justify-between">
             <Heading
-              title="Products"
-              description="Manage products (Server side table functionalities.)"
+              title="Mobil"
+              description="Menampilkan daftar mobil yang tersedia pada garasi Anda."
             />
             <Link
               href="/dashboard/product/new"
