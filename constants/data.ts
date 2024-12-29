@@ -216,6 +216,14 @@ export const navItems: NavItem[] = [
     shortcut: ['d', 'd'],
     isActive: false,
     items: [] // No child items
+  },
+  {
+    title: 'Calendar',
+    url: '/dashboard/calendar',
+    icon: 'calendar',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: [] // No child items
   }
 ];
 
