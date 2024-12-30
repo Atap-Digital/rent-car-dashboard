@@ -1,6 +1,7 @@
 import { fakeProducts, Product } from '@/constants/mock-api';
 import { notFound } from 'next/navigation';
-import ProductForm from './product-form';
+import ProductForm from './mobil-form';
+import ProductDetail from './mobil-detail';
 
 type TProductViewPageProps = {
   productId: string;
@@ -21,5 +22,5 @@ export default async function ProductViewPage({
     pageTitle = `Edit Product`;
   }
 
-  return <ProductForm initialData={product} pageTitle={pageTitle} />;
+  return <ProductDetail initialData={product} pageTitle={pageTitle} />;
 }

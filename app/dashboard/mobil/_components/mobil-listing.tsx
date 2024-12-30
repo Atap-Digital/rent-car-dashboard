@@ -2,11 +2,14 @@ import { Product } from '@/constants/data';
 import { fakeProducts } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 import { DataTable as ProductTable } from '@/components/ui/table/data-table';
-import { columns } from './product-tables/columns';
+import { columns } from './mobil-tables/columns';
 
-type ProductListingPage = {};
+import ProductGrid from './mobil-grids/product-grid';
+type ProductListingPage = { viewMode: 'grid' | 'table' };
 
-export default async function ProductListingPage({}: ProductListingPage) {
+export default async function ProductListingPage({
+  viewMode
+}: ProductListingPage) {
   // Showcasing the use of search params cache in nested RSCs
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
@@ -24,11 +27,17 @@ export default async function ProductListingPage({}: ProductListingPage) {
   const totalProducts = data.total_products;
   const products: Product[] = data.products;
 
-  return (
-    <ProductTable
-      columns={columns}
-      data={products}
-      totalItems={totalProducts}
-    />
-  );
+  if (viewMode === 'grid') {
+    return <ProductGrid products={products} />;
+  } else if (viewMode === 'table') {
+    return (
+      <ProductTable
+        columns={columns}
+        data={products}
+        totalItems={totalProducts}
+      />
+    );
+  } else {
+    return null;
+  }
 }

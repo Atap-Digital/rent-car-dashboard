@@ -3,14 +3,19 @@ import { buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { Booking } from '@/constants/data';
-import { fakeUsers } from '@/constants/mock-api';
+
+import { fakeBookings } from '@/constants/mock-api';
+
 import { searchParamsCache } from '@/lib/searchparams';
 import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import BookingTable from './booking-tables';
+
+import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+import { Component as BarChart } from './bar-chart';
 
 type TBookingListingPage = {};
+import BookingTable from './booking-tables';
 
 export default async function BookingListingPage({}: TBookingListingPage) {
   // Showcasing the use of search params cache in nested RSCs
@@ -27,17 +32,45 @@ export default async function BookingListingPage({}: TBookingListingPage) {
   };
 
   // mock api call
-  const data = await fakeUsers.getUsers(filters);
-  const totalUsers = data.total_users;
-  const booking: Booking[] = data.users;
+  const data = await fakeBookings.getBookings(filters);
+  const totalBookings = data.total_bookings;
+  const booking: Booking[] = data.bookings;
+
+  // Create an array of card data
+  const cardDataArray = [
+    {
+      title: 'Card Title 1',
+      icon: <Plus />,
+      value: 'Value 1',
+      change: 'Change 1'
+    },
+    {
+      title: 'Card Title 2',
+      icon: <Plus />,
+      value: 'Value 2',
+      change: 'Change 2'
+    },
+    {
+      title: 'Card Title 3',
+      icon: <Plus />,
+      value: 'Value 3',
+      change: 'Change 3'
+    },
+    {
+      title: 'Card Title 4',
+      icon: <Plus />,
+      value: 'Value 4',
+      change: 'Change 4'
+    }
+  ];
 
   return (
     <PageContainer scrollable>
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title={`Booking (${totalUsers})`}
-            description="Menampilkan data booking mobil"
+            title={`Booking (${totalBookings})`}
+            description="Manage booking (Server side table functionalities.)"
           />
 
           <Link
@@ -47,8 +80,29 @@ export default async function BookingListingPage({}: TBookingListingPage) {
             <Plus className="mr-2 h-4 w-4" /> Tambah Data
           </Link>
         </div>
+        <div className="flex w-full justify-between space-x-4">
+          <div className="grid flex-grow grid-cols-2 gap-4">
+            {cardDataArray.map((cardData, index) => (
+              <Card key={index}>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">
+                    {cardData.title}
+                  </CardTitle>
+                  {cardData.icon}
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{cardData.value}</div>
+                  <p className="text-xs text-muted-foreground">
+                    {cardData.change}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <BarChart />
+        </div>
         <Separator />
-        <BookingTable data={booking} totalData={totalUsers} />
+        <BookingTable data={booking} totalData={totalBookings} />
       </div>
     </PageContainer>
   );

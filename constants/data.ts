@@ -101,13 +101,7 @@ export type Service = {
   fee: number;
   photo_url: string;
 };
-export type Booking = {
-  id: number;
-  first_name: string;
-  latitude?: number; // Optional field
-  job: string;
-  profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
-};
+
 export type RiwayatTransaksi = {
   id: number;
   first_name: string;
@@ -125,6 +119,22 @@ export type Product = {
   deskripsi: string;
   profit: number;
   id: number;
+  updated_at: string;
+};
+export type Booking = {
+  id: number;
+  booking_date: string;
+  customer_name: string;
+  car_model: string;
+  isWithDriver: boolean;
+  driver_name?: string;
+  duration: number;
+  status: string;
+  amount: number;
+  payment_status: string;
+  start_date: string;
+  end_date: string;
+  created_at: string;
   updated_at: string;
 };
 
@@ -204,6 +214,14 @@ export const navItems: NavItem[] = [
     url: '/dashboard/driver',
     icon: 'carTaxi',
     shortcut: ['d', 'd'],
+    isActive: false,
+    items: [] // No child items
+  },
+  {
+    title: 'Calendar',
+    url: '/dashboard/calendar',
+    icon: 'calendar',
+    shortcut: ['c', 'c'],
     isActive: false,
     items: [] // No child items
   }

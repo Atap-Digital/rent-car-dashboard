@@ -222,7 +222,7 @@ export const fakeProducts = {
         profit: parseFloat(
           faker.commerce.price({ min: 1000000, max: 5000000, dec: 0 })
         ),
-        photo_url: `https://api.slingacademy.com/public/sample-products/${id}.png`,
+        photo_url: '/Mercedes Car PNG.png',
         deskripsi: faker.vehicle.model(),
         updated_at: faker.date.recent().toISOString()
       };
@@ -330,6 +330,172 @@ export const fakeProducts = {
 
 // Initialize sample products
 fakeProducts.initialize();
+type Status = 'Confirmed' | 'Pending' | 'Cancelled';
+// Define the shape of Booking data
+export type Booking = {
+  id: number;
+  booking_date: string;
+  customer_name: string;
+  car_model: string;
+  isWithDriver: boolean;
+  driver_name?: string;
+  duration: number;
+  status: Status;
+  amount: number;
+  payment_status: string;
+  start_date: string;
+  end_date: string;
+  created_at: string;
+  updated_at: string;
+};
+
+// Mock booking data store
+export const fakeBookings = {
+  records: [] as Booking[], // Holds the list of booking objects
+
+  // Initialize with sample data
+  initialize() {
+    const sampleBookings: Booking[] = [];
+    function generateRandomBookingData(id: number): Booking {
+      return {
+        id,
+        booking_date: faker.date
+          .between({ from: '2022-01-01', to: '2023-12-31' })
+          .toISOString(),
+        customer_name: `${faker.person.firstName()} ${faker.person.lastName()}`,
+        car_model: faker.vehicle.model(),
+        isWithDriver: faker.datatype.boolean(),
+        driver_name: faker.person.firstName(),
+        duration: faker.number.int({ min: 1, max: 10 }),
+        status: faker.helpers.arrayElement([
+          'Pending',
+          'Confirmed',
+          'Cancelled'
+        ]),
+        amount: parseFloat(
+          faker.commerce.price({ min: 100000, max: 1000000, dec: 0 })
+        ),
+        payment_status: faker.helpers.arrayElement(['Paid', 'Unpaid']),
+        start_date: faker.date
+          .between({ from: '2022-01-01', to: '2023-12-31' })
+          .toISOString(),
+        end_date: faker.date
+          .between({ from: '2022-01-01', to: '2023-12-31' })
+          .toISOString(),
+        created_at: faker.date.recent().toISOString(),
+        updated_at: faker.date.recent().toISOString()
+      };
+    }
+
+    // Generate remaining records
+    for (let i = 1; i <= 20; i++) {
+      sampleBookings.push(generateRandomBookingData(i));
+    }
+
+    this.records = sampleBookings;
+  },
+
+  // Get all bookings with optional status filtering and search
+  async getAll({
+    statuses = [],
+    search
+  }: {
+    statuses?: string[];
+    search?: string;
+  }) {
+    let bookings = [...this.records];
+
+    // Filter bookings based on selected statuses
+    if (statuses.length > 0) {
+      console.log('Filtering bookings with statuses:', statuses);
+      bookings = bookings.filter((booking) =>
+        statuses.includes(booking.status)
+      );
+    }
+
+    // Search functionality across multiple fields
+    if (search) {
+      bookings = matchSorter(bookings, search, {
+        keys: ['customer_name', 'car_model', 'driver_name']
+      });
+    }
+
+    return bookings;
+  },
+
+  // Get paginated results with optional status filtering and search
+  async getBookings({
+    page = 1,
+    limit = 10,
+    statuses,
+    search
+  }: {
+    page?: number;
+    limit?: number;
+    statuses?: string;
+    search?: string;
+  }) {
+    await delay(1000);
+    const statusesArray = statuses ? statuses.split('.') : [];
+
+    // Log the statuses being used for filtering
+    if (statusesArray.length > 0) {
+      console.log('Filtering bookings with statuses:', statusesArray);
+    }
+
+    const allBookings = await this.getAll({
+      statuses: statusesArray,
+      search
+    });
+    const totalBookings = allBookings.length;
+
+    // Pagination logic
+    const offset = (page - 1) * limit;
+    const paginatedBookings = allBookings.slice(offset, offset + limit);
+
+    // Mock current time
+    const currentTime = new Date().toISOString();
+
+    // Return paginated response
+    return {
+      success: true,
+      time: currentTime,
+      message: 'Sample data for testing and learning purposes',
+      total_bookings: totalBookings,
+      offset,
+      limit,
+      bookings: paginatedBookings
+    };
+  },
+
+  // Get a specific booking by its ID
+  async getBookingById(id: number) {
+    await delay(1000); // Simulate a delay
+
+    // Find the booking by its ID
+    const booking = this.records.find((booking) => booking.id === id);
+
+    if (!booking) {
+      return {
+        success: false,
+        message: `Booking with ID ${id} not found`
+      };
+    }
+
+    // Mock current time
+    const currentTime = new Date().toISOString();
+
+    return {
+      success: true,
+      time: currentTime,
+      message: `Booking with ID ${id} found`,
+      booking
+    };
+  }
+};
+
+// Initialize sample bookings
+fakeBookings.initialize();
 // Mock service data store
 
 export type Service = {

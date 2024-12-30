@@ -37,7 +37,8 @@ import {
   ListOrdered,
   PiggyBank,
   X,
-  LucideShoppingBag
+  LucideShoppingBag,
+  CalendarIcon
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -78,6 +79,7 @@ export const Icons = {
   wrench: Wrench,
   piggyBank: PiggyBank,
   wallet: Wallet,
+  calendar: CalendarIcon,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"
