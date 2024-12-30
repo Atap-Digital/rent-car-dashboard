@@ -36,7 +36,7 @@ export const columns: ColumnDef<Driver>[] = [
   },
   {
     accessorKey: 'phone',
-    header: 'Phone'
+    header: 'Nomor Handphone'
   },
   {
     accessorKey: 'status',
@@ -44,17 +44,27 @@ export const columns: ColumnDef<Driver>[] = [
     cell: ({ row }) => {
       const status = row.original.status;
       const statusColor =
-        status === 'On Duty'
+        status === 'Aktif'
           ? 'bg-green-100 text-green-800'
-          : status === 'Half-Day Leave'
+          : status === 'Izin'
           ? 'bg-yellow-100 text-yellow-800'
+          : status === 'Pasif'
+          ? 'bg-gray-100 text-gray-800'
           : 'bg-red-100 text-red-800';
       return (
-        <Badge
-          className={`mb-4 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium hover:bg-white ${statusColor}`}
-        >
-          {status}
-        </Badge>
+        <div className="flex justify-center">
+          <Badge
+            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium hover:bg-white ${statusColor}`}
+          >
+            {status === 'Aktif' && 'On Duty'}
+            {status === 'Izin' && 'Izin'}
+            {status === 'Pasif' && 'Stand By'}
+            {status !== 'Aktif' &&
+              status !== 'Izin' &&
+              status !== 'Pasif' &&
+              'Sakit'}
+          </Badge>
+        </div>
       );
     }
   },

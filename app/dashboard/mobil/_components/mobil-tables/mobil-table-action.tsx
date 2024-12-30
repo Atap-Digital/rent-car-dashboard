@@ -21,14 +21,14 @@ export default function ProductTableAction() {
   return (
     <div className="flex flex-wrap items-center gap-4">
       <DataTableSearch
-        searchKey="name"
+        searchKey="Mobil"
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         setPage={setPage}
       />
       <DataTableFilterBox
         filterKey="categories"
-        title="Categories"
+        title="Kategori"
         options={CATEGORY_OPTIONS}
         setFilterValue={setCategoriesFilter}
         filterValue={categoriesFilter}

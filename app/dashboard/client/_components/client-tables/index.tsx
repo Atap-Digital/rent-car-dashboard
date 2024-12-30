@@ -32,7 +32,7 @@ export default function ClientTable({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-4">
         <DataTableSearch
-          searchKey="name"
+          searchKey="Nama Client"
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           setPage={setPage}

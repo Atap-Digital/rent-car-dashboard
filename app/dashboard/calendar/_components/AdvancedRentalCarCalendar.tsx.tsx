@@ -127,26 +127,25 @@ export default function AdvancedRentalCarCalendar() {
   };
 
   return (
-    <Card className="h-screen w-full">
+    <Card className="">
       <CardHeader>
-        <CardTitle>Rental Car Calendar</CardTitle>
+        <CardTitle className="text-xl">Kalendar Perjalanan</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="mb-4 flex flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0">
-          <form onSubmit={handleSearch} className="flex space-x-2">
-            <div className="space-y-2">
-              <Label htmlFor="search">Search Customer or Phone</Label>
-              <Input
-                id="search"
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <Button type="submit">Search</Button>
-          </form>
+        {/* <div className="mb-4 flex flex-col space-y-4 lg:flex-row lg:space-x-4 lg:space-y-0">
+        <form onSubmit={handleSearch} className="flex space-x-2">
+        <div className="space-y-2">
+          <Input
+          id="search"
+          type="text"
+          placeholder="Cari..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
+        <Button type="submit">Search</Button>
+        </form>
+      </div> */}
         <div className="h-[calc(100vh-250px)]">
           <BigCalendar
             localizer={localizer}
@@ -162,7 +161,7 @@ export default function AdvancedRentalCarCalendar() {
             defaultDate={new Date()}
             onSelectEvent={handleSelectEvent}
             eventPropGetter={eventStyleGetter}
-            className="rounded-md border shadow-sm"
+            className="rounded-md text-sm shadow-sm" // Added text-sm for smaller font
             components={{
               toolbar: CustomToolbar
             }}

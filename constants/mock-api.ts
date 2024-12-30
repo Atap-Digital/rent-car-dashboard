@@ -184,7 +184,6 @@ export const fakeUsers = {
 // Initialize sample users
 fakeUsers.initialize();
 
-// Define the shape of Product data
 export type Product = {
   photo_url: string;
   nama_mobil: string;
@@ -193,10 +192,10 @@ export type Product = {
   harga_sewa: number;
   deskripsi: string;
   profit: number;
+  owner: string;
   id: number;
   updated_at: string;
 };
-
 // Mock product data store
 export const fakeProducts = {
   records: [] as Product[], // Holds the list of product objects
@@ -224,6 +223,7 @@ export const fakeProducts = {
         ),
         photo_url: '/Mercedes Car PNG.png',
         deskripsi: faker.vehicle.model(),
+        owner: `${faker.person.firstName()} ${faker.person.lastName()}`,
         updated_at: faker.date.recent().toISOString()
       };
     }
@@ -335,6 +335,7 @@ type Status = 'Confirmed' | 'Pending' | 'Cancelled';
 export type Booking = {
   id: number;
   booking_date: string;
+  booking_code: number;
   customer_name: string;
   car_model: string;
   isWithDriver: boolean;
@@ -365,6 +366,7 @@ export const fakeBookings = {
         customer_name: `${faker.person.firstName()} ${faker.person.lastName()}`,
         car_model: faker.vehicle.model(),
         isWithDriver: faker.datatype.boolean(),
+        booking_code: faker.number.int({ min: 1000, max: 9999 }),
         driver_name: faker.person.firstName(),
         duration: faker.number.int({ min: 1, max: 10 }),
         status: faker.helpers.arrayElement([
@@ -824,35 +826,12 @@ export const fakeDriver = {
   initialize() {
     const sampleDrivers: Driver[] = [];
     function generateRandomDriverData(id: number): Driver {
-      const names = [
-        'John Doe',
-        'Jane Smith',
-        'Michael Brown',
-        'Emily Davis',
-        'Chris Wilson',
-        'Anna Johnson',
-        'Robert White',
-        'Sophia Miller',
-        'Daniel Taylor',
-        'Olivia Martin'
-      ];
-      const emails = [
-        'contact@mainstreet.sf',
-        'info@elmstreet.nyc',
-        'support@pinestreet.la',
-        'hello@maplestreet.chicago',
-        'services@oakstreet.houston',
-        'admin@cedarstreet.phoenix',
-        'team@birchstreet.philly'
-      ];
-      const statuses = ['Sick Leave', 'On Duty', 'Half-Day Leave'];
-
       return {
         id,
-        name: faker.helpers.arrayElement(names),
-        email: faker.helpers.arrayElement(emails),
+        name: faker.person.fullName(),
+        email: faker.internet.email(),
         phone: faker.phone.number({ style: 'national' }),
-        status: faker.helpers.arrayElement(statuses)
+        status: faker.helpers.arrayElement(['Sakit', 'Aktif', 'Izin', 'Pasif'])
       };
     }
 

@@ -32,7 +32,7 @@ export default function DriverTable({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-4">
         <DataTableSearch
-          searchKey="name"
+          searchKey="Nama Driver"
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           setPage={setPage}

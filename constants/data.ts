@@ -118,11 +118,13 @@ export type Product = {
   harga_sewa: number;
   deskripsi: string;
   profit: number;
+  owner: string;
   id: number;
   updated_at: string;
 };
 export type Booking = {
   id: number;
+  booking_code: number;
   booking_date: string;
   customer_name: string;
   car_model: string;
@@ -218,7 +220,7 @@ export const navItems: NavItem[] = [
     items: [] // No child items
   },
   {
-    title: 'Calendar',
+    title: 'Kalendar',
     url: '/dashboard/calendar',
     icon: 'calendar',
     shortcut: ['c', 'c'],

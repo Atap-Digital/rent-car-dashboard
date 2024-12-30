@@ -31,11 +31,12 @@ export default async function KeuanganListingPage({}: TKeuanganListingPage) {
   const data = await fakeKeuangan.getKeuangan(filters);
   const totalUsers = data.total_records;
   const keuangan: Keuangan[] = data.records;
+
   const dataCard = {
     totalRevenue: {
-      title: 'Complete Payment',
+      title: 'Total Pendapatan',
       value: 'Rp. 100.000.000',
-      change: '12% dari bulan sebelumnya',
+      change: '+12% dari bulan sebelumnya',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,8 +52,8 @@ export default async function KeuanganListingPage({}: TKeuanganListingPage) {
         </svg>
       )
     },
-    awaitingPayment: {
-      title: 'Awaiting Payment',
+    subscriptions: {
+      title: 'Total Booking',
       value: '+80',
       change: '+30% dari bulan sebelumnya',
       icon: (
@@ -72,10 +73,10 @@ export default async function KeuanganListingPage({}: TKeuanganListingPage) {
         </svg>
       )
     },
-    overdue: {
-      title: 'Overdue',
+    sales: {
+      title: 'Total Keuntungan',
       value: 'Rp. 20.000.000',
-      change: '12% dari bulan sebelumnya',
+      change: '+5% dari bulan sebelumnya',
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -93,8 +94,8 @@ export default async function KeuanganListingPage({}: TKeuanganListingPage) {
       )
     },
     activeNow: {
-      title: 'Pendapatan Bersih',
-      value: '+17',
+      title: 'Total Mobil Saat Ini',
+      value: '+24',
       change: '+2 dari bulan sebelumnya',
       icon: (
         <svg
@@ -117,12 +118,12 @@ export default async function KeuanganListingPage({}: TKeuanganListingPage) {
       <div className="flex items-start justify-between">
         <Heading title={`Keuangan`} description="Menampilkan data keuangan" />
 
-        <Link
+        {/* <Link
           href={'/dashboard/keuangan/new'}
           className={cn(buttonVariants({ variant: 'default' }))}
         >
-          <Plus className="mr-2 h-4 w-4" /> Add Keuangan
-        </Link>
+          <Plus className="mr-2 h-4 w-4" /> Tambah Data Keuangan
+        </Link> */}
       </div>
       <div className="mb-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {Object.values(dataCard).map((item, index) => (

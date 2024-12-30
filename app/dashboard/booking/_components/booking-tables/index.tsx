@@ -7,7 +7,7 @@ import { DataTableSearch } from '@/components/ui/table/data-table-search';
 import { Booking } from '@/constants/data';
 import { columns } from './columns';
 import {
-  GENDER_OPTIONS,
+  PAYMENT_OPTIONS,
   useBookingTableFilters
 } from './use-booking-table-filters';
 
@@ -32,15 +32,15 @@ export default function BookingTable({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-4">
         <DataTableSearch
-          searchKey="name"
+          searchKey="Kode Booking"
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           setPage={setPage}
         />
         <DataTableFilterBox
-          filterKey="gender"
-          title="Gender"
-          options={GENDER_OPTIONS}
+          filterKey="status"
+          title="Status Pembayaran"
+          options={PAYMENT_OPTIONS}
           setFilterValue={setGenderFilter}
           filterValue={genderFilter}
         />
