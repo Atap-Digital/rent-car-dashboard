@@ -35,9 +35,9 @@ const data = {
     )
   },
   subscriptions: {
-    title: 'Total Pesanan',
-    value: '+219',
-    change: '+180.1% dari bulan sebelumnya',
+    title: 'Total Booking',
+    value: '+80',
+    change: '+30% dari bulan sebelumnya',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ const data = {
     )
   },
   activeNow: {
-    title: 'Total Mobil Standby',
+    title: 'Total Mobil Saat Ini',
     value: '+17',
     change: '+2 dari bulan sebelumnya',
     icon: (
@@ -98,7 +98,7 @@ const data = {
 
 export default function OverViewPage() {
   return (
-    <PageContainer scrollable>
+    <PageContainer scrollable showRightContainer>
       <div className="space-y-2">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">
@@ -106,7 +106,7 @@ export default function OverViewPage() {
           </h2>
           <div className="hidden items-center space-x-2 md:flex">
             <CalendarDateRangePicker />
-            <Button>Download</Button>
+            <Button>Export Data</Button>
           </div>
         </div>
         <Tabs defaultValue="overview" className="space-y-4">
@@ -117,7 +117,7 @@ export default function OverViewPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
               {Object.values(data).map((item, index) => (
                 <Card key={index}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -143,7 +143,7 @@ export default function OverViewPage() {
                 <CardHeader>
                   <CardTitle>Penjualan Terakhir</CardTitle>
                   <CardDescription>
-                    kamu mendapatkan 265 penjualan bulan ini.
+                    Berikut adalah 5 data transaksi terakhir.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -152,6 +152,15 @@ export default function OverViewPage() {
               </Card>
               <div className="col-span-4">
                 <AreaGraph />
+              </div>
+              <div className="col-span-4 md:col-span-3">
+                <PieGraph />
+              </div>
+              <div className="col-span-4 md:col-span-3">
+                <PieGraph />
+              </div>
+              <div className="col-span-4 md:col-span-3">
+                <PieGraph />
               </div>
               <div className="col-span-4 md:col-span-3">
                 <PieGraph />

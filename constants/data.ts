@@ -90,39 +90,21 @@ export const users: User[] = [
     status: 'Active'
   }
 ];
-
-export type Employee = {
+export type Service = {
   id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  gender: string;
-  date_of_birth: string; // Consider using a proper date type if possible
-  street: string;
-  city: string;
-  state: string;
-  country: string;
-  zipcode: string;
-  longitude?: number; // Optional field
-  latitude?: number; // Optional field
-  job: string;
-  profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
+  car_name: string;
+  description: string;
+  date_start: string;
+  date_end: string;
+  status: string;
+  location: string;
+  fee: number;
+  photo_url: string;
 };
-export type Driver = {
+
+export type RiwayatTransaksi = {
   id: number;
   first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  gender: string;
-  date_of_birth: string; // Consider using a proper date type if possible
-  street: string;
-  city: string;
-  state: string;
-  country: string;
-  zipcode: string;
-  longitude?: number; // Optional field
   latitude?: number; // Optional field
   job: string;
   profile_picture?: string | null; // Profile picture can be a string (URL) or null (if no picture)
@@ -139,7 +121,61 @@ export type Product = {
   id: number;
   updated_at: string;
 };
+export type Booking = {
+  id: number;
+  booking_date: string;
+  customer_name: string;
+  car_model: string;
+  isWithDriver: boolean;
+  driver_name?: string;
+  duration: number;
+  status: string;
+  amount: number;
+  payment_status: string;
+  start_date: string;
+  end_date: string;
+  created_at: string;
+  updated_at: string;
+};
 
+export type Client = {
+  id: number;
+  email: string;
+  name: string;
+  phone: string; // Changed to string to support phone formatting
+  address: string;
+  document: string; // e.g., could be a URL or document type
+};
+
+export type Driver = {
+  id: number;
+  email: string;
+  name: string;
+  phone: string; // Changed to string to support phone formatting
+  status: string; // Changed to string to support phone formatting
+};
+
+export type Keuangan = {
+  id: number;
+  invoice_id: number;
+  client_name: string;
+  car_model: string;
+  rate_per_day: number;
+  rate: number;
+  rental_period: string;
+  amount: string;
+  due_date: string;
+  status: string;
+};
+export type Cashflow = {
+  id: number;
+  expenses: string;
+  category: string;
+  quantity: string;
+  amount: string;
+  date: string;
+  status: string;
+};
 export const navItems: NavItem[] = [
   {
     title: 'Dashboard',
@@ -166,6 +202,14 @@ export const navItems: NavItem[] = [
     items: [] // No child items
   },
   {
+    title: 'Client',
+    url: '/dashboard/client',
+    icon: 'user',
+    shortcut: ['k', 'k'],
+    isActive: false,
+    items: [] // No child items
+  },
+  {
     title: 'Driver',
     url: '/dashboard/driver',
     icon: 'carTaxi',
@@ -174,27 +218,10 @@ export const navItems: NavItem[] = [
     items: [] // No child items
   },
   {
-    title: 'Karyawan',
-    url: '/dashboard/karyawan',
-    icon: 'user',
-    shortcut: ['k', 'k'],
-    isActive: false,
-    items: [] // No child items
-  },
-
-  {
-    title: 'Service',
-    url: '/dashboard/service',
-    icon: 'wrench',
-    shortcut: ['s', 's'],
-    isActive: false,
-    items: [] // No child items
-  },
-  {
-    title: 'Tugas Harian',
-    url: '/dashboard/tugas',
-    icon: 'kanban',
-    shortcut: ['k', 'k'],
+    title: 'Calendar',
+    url: '/dashboard/calendar',
+    icon: 'calendar',
+    shortcut: ['c', 'c'],
     isActive: false,
     items: [] // No child items
   }
@@ -203,7 +230,7 @@ export const navItems: NavItem[] = [
 export const navItemsAccounting: NavItem[] = [
   {
     title: 'Catatan Keuangan',
-    url: '/dashboard/catatan-keuangan',
+    url: '/dashboard/keuangan',
     icon: 'wallet',
     shortcut: ['w', 'w']
   },
@@ -212,13 +239,5 @@ export const navItemsAccounting: NavItem[] = [
     shortcut: ['c', 'c'],
     url: '/dashboard/cashflow',
     icon: 'piggyBank'
-  },
-  {
-    title: 'Riwayat Transaksi',
-    url: '/dashboard/riwayat-transaksi',
-    icon: 'bookOpenText',
-    shortcut: ['t', 't'],
-    isActive: false,
-    items: [] // No child items
   }
 ];

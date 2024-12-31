@@ -1,19 +1,19 @@
 import { searchParamsCache } from '@/lib/searchparams';
 import { SearchParams } from 'nuqs/parsers';
 import React from 'react';
-import DriverListingPage from './_components/driver-listing-page';
+import KeuanganListingPage from './_components/cashflow-listing-page';
 
 type pageProps = {
   searchParams: SearchParams;
 };
 
 export const metadata = {
-  title: 'Akuntansi: Data Cashflow'
+  title: 'Dashboard - Keuangan'
 };
 
 export default async function Page({ searchParams }: pageProps) {
   // Allow nested RSCs to access the search params (in a type-safe way)
   searchParamsCache.parse(searchParams);
 
-  return <DriverListingPage />;
+  return <KeuanganListingPage />;
 }

@@ -5,7 +5,7 @@ import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box'
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
 import { Driver } from '@/constants/data';
-import { columns } from '../driver-tables/columns';
+import { columns } from './columns';
 import {
   GENDER_OPTIONS,
   useDriverTableFilters
@@ -37,17 +37,17 @@ export default function DriverTable({
           setSearchQuery={setSearchQuery}
           setPage={setPage}
         />
-        <DataTableFilterBox
+        {/* <DataTableFilterBox
           filterKey="gender"
           title="Gender"
           options={GENDER_OPTIONS}
           setFilterValue={setGenderFilter}
           filterValue={genderFilter}
-        />
-        <DataTableResetFilter
+        /> */}
+        {/* <DataTableResetFilter
           isFilterActive={isAnyFilterActive}
           onReset={resetFilters}
-        />
+        /> */}
       </div>
       <DataTable columns={columns} data={data} totalItems={totalData} />
     </div>
