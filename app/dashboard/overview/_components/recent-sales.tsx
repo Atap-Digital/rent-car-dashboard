@@ -54,6 +54,15 @@ const rentalData: Rental[] = [
     amount: 'Rp. 2,000,000',
     rentalDuration: '5 days',
     rentalDate: '2023-10-05' // Example date
+  },
+  {
+    carPhotoUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/3/3b/2018_Mercedes-Benz_S_450_Luxury.jpg',
+    carType: 'Mercedes S-Class',
+    licensePlate: 'B 3344 KL',
+    amount: 'Rp. 2,000,000',
+    rentalDuration: '5 days',
+    rentalDate: '2023-10-05' // Example date
   }
 ];
 

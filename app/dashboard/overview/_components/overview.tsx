@@ -1,5 +1,5 @@
 import { AreaGraph } from './area-graph';
-import { BarGraph } from './bar-graph';
+import { Component as BarGraph } from './bar-graph';
 import { PieGraph } from './pie-graph';
 import { CalendarDateRangePicker } from '@/components/date-range-picker';
 import PageContainer from '@/components/layout/page-container';
@@ -117,7 +117,7 @@ export default function OverViewPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {Object.values(data).map((item, index) => (
                 <Card key={index}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -135,35 +135,23 @@ export default function OverViewPage() {
                 </Card>
               ))}
             </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
-              <div className="col-span-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-4 lg:col-span-2">
                 <BarGraph />
-              </div>
-              <Card className="col-span-4 md:col-span-3">
-                <CardHeader>
-                  <CardTitle>Penjualan Terakhir</CardTitle>
-                  <CardDescription>
-                    Berikut adalah 5 data transaksi terakhir.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <RecentRentals />
-                </CardContent>
-              </Card>
-              <div className="col-span-4">
                 <AreaGraph />
               </div>
-              <div className="col-span-4 md:col-span-3">
-                <PieGraph />
-              </div>
-              <div className="col-span-4 md:col-span-3">
-                <PieGraph />
-              </div>
-              <div className="col-span-4 md:col-span-3">
-                <PieGraph />
-              </div>
-              <div className="col-span-4 md:col-span-3">
-                <PieGraph />
+              <div className="space-y-4">
+                <Card className="col-span-4 md:col-span-3">
+                  <CardHeader>
+                    <CardTitle>Penjualan Terakhir</CardTitle>
+                    <CardDescription>
+                      Berikut adalah 5 data transaksi terakhir.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <RecentRentals />
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </TabsContent>

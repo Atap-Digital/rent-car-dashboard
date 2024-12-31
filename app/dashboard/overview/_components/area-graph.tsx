@@ -1,7 +1,7 @@
 'use client';
 
 import { TrendingUp } from 'lucide-react';
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 import {
   Card,
@@ -19,22 +19,24 @@ import {
 } from '@/components/ui/chart';
 
 const chartData = [
-  { month: 'Januari', sales: 300, expenses: 200 },
-  { month: 'Februari', sales: 400, expenses: 250 },
-  { month: 'Maret', sales: 350, expenses: 300 },
-  { month: 'April', sales: 450, expenses: 350 },
-  { month: 'Mei', sales: 500, expenses: 400 },
-  { month: 'Juni', sales: 550, expenses: 450 }
+  { month: 'Januari', desktop: 320 },
+  { month: 'Februari', desktop: 450 },
+  { month: 'Maret', desktop: 380 },
+  { month: 'April', desktop: 470 },
+  { month: 'Mei', desktop: 520 },
+  { month: 'Juni', desktop: 560 },
+  { month: 'Juli', desktop: 480 },
+  { month: 'Agustus', desktop: 510 },
+  { month: 'September', desktop: 490 },
+  { month: 'Oktober', desktop: 530 },
+  { month: 'November', desktop: 600 },
+  { month: 'Desember', desktop: 580 }
 ];
 
 const chartConfig = {
-  sales: {
-    label: 'Penjualan',
+  desktop: {
+    label: 'Desktop',
     color: 'hsl(var(--chart-1))'
-  },
-  expenses: {
-    label: 'Pengeluaran',
-    color: 'hsl(var(--chart-2))'
   }
 } satisfies ChartConfig;
 
@@ -42,24 +44,17 @@ export function AreaGraph() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Grafik Area - Penjualan dan Pengeluaran</CardTitle>
+        <CardTitle>Grafik Area - Desktop</CardTitle>
         <CardDescription>
-          Menampilkan total penjualan dan pengeluaran selama 6 bulan terakhir
+          Menampilkan total desktop selama 6 bulan terakhir
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[310px] w-full"
+          className="aspect-auto h-[300px] w-full"
         >
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12
-            }}
-          >
+          <AreaChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"
@@ -73,19 +68,11 @@ export function AreaGraph() {
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="expenses"
+              dataKey="desktop"
               type="natural"
-              fill="var(--color-expenses)"
+              fill="var(--color-desktop)"
               fillOpacity={0.4}
-              stroke="var(--color-expenses)"
-              stackId="a"
-            />
-            <Area
-              dataKey="sales"
-              type="natural"
-              fill="var(--color-sales)"
-              fillOpacity={0.4}
-              stroke="var(--color-sales)"
+              stroke="var(--color-desktop)"
               stackId="a"
             />
           </AreaChart>
