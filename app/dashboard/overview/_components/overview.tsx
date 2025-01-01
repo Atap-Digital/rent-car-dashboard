@@ -1,5 +1,5 @@
 import { AreaGraph } from './area-graph';
-import { BarGraph } from './bar-graph';
+import { Component as BarGraph } from './bar-graph';
 import { PieGraph } from './pie-graph';
 import { CalendarDateRangePicker } from '@/components/date-range-picker';
 import PageContainer from '@/components/layout/page-container';
@@ -117,7 +117,7 @@ export default function OverViewPage() {
             </TabsTrigger>
           </TabsList> */}
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {Object.values(data).map((item, index) => (
                 <Card key={index}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

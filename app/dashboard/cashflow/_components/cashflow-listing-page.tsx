@@ -16,7 +16,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { BarGraph } from '../../overview/_components/bar-graph';
+import { Component as BarGraph } from '../../overview/_components/bar-graph';
 import { RecentRentals } from '../../overview/_components/recent-sales';
 import { AreaGraph } from '../../overview/_components/area-graph';
 import { PieGraph } from '../../overview/_components/pie-graph';
