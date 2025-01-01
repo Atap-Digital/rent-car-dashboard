@@ -41,7 +41,9 @@ export default function CashflowForm() {
     defaultValues: {
       name: '',
       company: '',
-      gender: undefined
+      gender: undefined,
+      email: '',
+      country: ''
     }
   });
 
