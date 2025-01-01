@@ -29,6 +29,15 @@ const formSchema = z.object({
   }),
   gender: z.enum(['male', 'female', 'other'], {
     required_error: 'Please select a gender.'
+  }),
+  company: z.string().min(2, {
+    message: 'Company must be at least 2 characters.'
+  }),
+  country: z.string().min(2, {
+    message: 'Country must be at least 2 characters.'
+  }),
+  email: z.string().email({
+    message: 'Invalid email address.'
   })
 });
 
@@ -38,7 +47,9 @@ export default function DriverForm() {
     defaultValues: {
       name: '',
       company: '',
-      gender: undefined
+      gender: undefined,
+      country: undefined,
+      email: ''
     }
   });
 
