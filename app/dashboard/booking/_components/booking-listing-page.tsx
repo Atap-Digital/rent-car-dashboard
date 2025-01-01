@@ -36,71 +36,127 @@ export default async function BookingListingPage({}: TBookingListingPage) {
   const totalBookings = data.total_bookings;
   const booking: Booking[] = data.bookings;
 
-  // Create an array of card data
-  const cardDataArray = [
-    {
-      title: 'Card Title 1',
-      icon: <Plus />,
-      value: 'Value 1',
-      change: 'Change 1'
+  const dataBooking = {
+    totalRevenue: {
+      title: 'Total Booking',
+      value: '312',
+      change: '+12% dari bulan sebelumnya',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="h-4 w-4 text-muted-foreground"
+        >
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        </svg>
+      )
     },
-    {
-      title: 'Card Title 2',
-      icon: <Plus />,
-      value: 'Value 2',
-      change: 'Change 2'
+    subscriptions: {
+      title: 'Mobil Ready',
+      value: '80',
+      change: '+30% dari bulan sebelumnya',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="h-4 w-4 text-muted-foreground"
+        >
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      )
     },
-    {
-      title: 'Card Title 3',
-      icon: <Plus />,
-      value: 'Value 3',
-      change: 'Change 3'
+    sales: {
+      title: 'Perjalanan Selesai',
+      value: '15',
+      change: '+5% dari bulan sebelumnya',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="h-4 w-4 text-muted-foreground"
+        >
+          <rect width="20" height="14" x="2" y="5" rx="2" />
+          <path d="M2 10h20" />
+        </svg>
+      )
     },
-    {
-      title: 'Card Title 4',
-      icon: <Plus />,
-      value: 'Value 4',
-      change: 'Change 4'
+    activeNow: {
+      title: 'Perjalanan On Going',
+      value: '24',
+      change: '+2 dari bulan sebelumnya',
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="h-4 w-4 text-muted-foreground"
+        >
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
+      )
     }
-  ];
+  };
 
   return (
     <PageContainer scrollable>
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title={`Booking (${totalBookings})`}
-            description="Manage booking (Server side table functionalities.)"
+            title={`Booking`}
+            description="Menampilkan daftar booking mobil"
           />
 
           <Link
             href={'/dashboard/booking/new'}
-            className={cn(buttonVariants({ variant: 'default' }))}
+            className={cn(
+              buttonVariants({ variant: 'default' }),
+              'pointer-events-none'
+            )}
           >
-            <Plus className="mr-2 h-4 w-4" /> Tambah Data
+            <Plus className="mr-2 h-4 w-4" /> Tambah Data Booking
           </Link>
         </div>
-        <div className="flex w-full justify-between space-x-4">
-          <div className="grid flex-grow grid-cols-2 gap-4">
-            {cardDataArray.map((cardData, index) => (
-              <Card key={index}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">
-                    {cardData.title}
-                  </CardTitle>
-                  {cardData.icon}
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">{cardData.value}</div>
-                  <p className="text-xs text-muted-foreground">
-                    {cardData.change}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <BarChart />
+
+        <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-4">
+          {Object.values(dataBooking).map((item, index) => (
+            <Card key={index}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {item.title}
+                </CardTitle>
+                {item.icon}
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{item.value}</div>
+                <p className="text-xs text-muted-foreground">{item.change}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
+        {/* <div className="md:w-6/12">
+            <BarChart />
+          </div> */}
         <Separator />
         <BookingTable data={booking} totalData={totalBookings} />
       </div>

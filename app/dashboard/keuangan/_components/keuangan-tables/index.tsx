@@ -32,7 +32,7 @@ export default function KeuanganTable({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-4">
         <DataTableSearch
-          searchKey="name"
+          searchKey="Kode Invoice"
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           setPage={setPage}

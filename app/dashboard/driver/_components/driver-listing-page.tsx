@@ -50,15 +50,15 @@ export default async function ClientListingPage({}: TClientListingPage) {
                 href={'/dashboard/driver/new'}
                 className={cn(buttonVariants({ variant: 'default' }))}
               >
-                <Plus className="mr-2 h-4 w-4" /> Add Driver
+                <Plus className="mr-2 h-4 w-4" /> Tambah Driver
               </Link>
             </div>
             <Separator />
             <DriverTable data={driver} totalData={totalUsers} />
           </div>
           {/* Sidebar */}
-          <Card className="mt-4 lg:mt-0 lg:w-4/12">
-            <CardHeader>
+          <Card className="mt-4 lg:mt-0 lg:w-3/12">
+            {/* <CardHeader>
               <div className="flex justify-between">
                 <CardTitle>John Doe</CardTitle>
                 <Badge
@@ -74,10 +74,10 @@ export default async function ClientListingPage({}: TClientListingPage) {
                   <strong>Email: </strong> john.doe@example.com
                 </li>
                 <li>
-                  <strong>Phone: </strong> (123) 456-7890
+                  <strong>Nomor Handphone: </strong> (123) 456-7890
                 </li>
                 <li>
-                  <strong>Address: </strong>
+                  <strong>Alamat: </strong>
                   <span className="break-words">
                     Jl. Ancar 1 No 1 BTN Kekalik Baru
                   </span>
@@ -100,23 +100,20 @@ export default async function ClientListingPage({}: TClientListingPage) {
                   />
                 </svg>
                 <div>
-                  <div className="text-sm font-medium ">Work Hours</div>
-                  <div className="text-xs text-gray-500">380 hours</div>
+                  <div className="text-sm font-medium ">Total Jam Kerja</div>
+                  <div className="text-xs text-gray-500">380 Jam</div>
                 </div>
               </div>
-            </CardContent>
-            <Separator />
+            </CardContent> */}
+            {/* <Separator /> */}
             <CardContent className="mt-4 rounded-md">
-              <CardTitle className="mb-2">Agustus</CardTitle>
+              <CardTitle className="mb-2">Jadwal Keberangkatan</CardTitle>
               <Calendar
                 mode="single"
                 selected={date}
-                className="w-auto rounded-md border"
+                className="w-fit rounded-md border"
               />
-              <CardTitle className="mb-4 mt-4">
-                <u>Jadwal Keberangkatan</u>
-              </CardTitle>
-              <div className="max-h-64 overflow-y-auto">
+              <div className="mt-4 max-h-64 overflow-y-auto">
                 <ul className="space-y-2 text-sm">
                   <li className="mb-4 flex justify-between">
                     <div className="font-semibold">Aug 1</div>

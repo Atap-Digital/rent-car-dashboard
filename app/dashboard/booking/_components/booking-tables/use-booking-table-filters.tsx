@@ -4,9 +4,10 @@ import { searchParams } from '@/lib/searchparams';
 import { useQueryState } from 'nuqs';
 import { useCallback, useMemo } from 'react';
 
-export const GENDER_OPTIONS = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' }
+export const PAYMENT_OPTIONS = [
+  { value: 'paid', label: 'Paid' },
+  { value: 'pending', label: 'Pending' },
+  { value: 'unpaid', label: 'Unpaid' }
 ];
 
 export function useBookingTableFilters() {

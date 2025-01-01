@@ -44,7 +44,7 @@ export function AreaGraph() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Grafik Area - Desktop</CardTitle>
+        <CardTitle>Grafik Cashflow</CardTitle>
         <CardDescription>
           Menampilkan total desktop selama 6 bulan terakhir
         </CardDescription>
@@ -82,7 +82,7 @@ export function AreaGraph() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
-              Tren naik sebesar 5.2% bulan ini{' '}
+              Tren naik sebesar 5.2% bulan ini
               <TrendingUp className="h-4 w-4" />
             </div>
             <div className="flex items-center gap-2 leading-none text-muted-foreground">

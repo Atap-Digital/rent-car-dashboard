@@ -36,7 +36,7 @@ import { time } from 'console';
 
 const RightContainer = () => {
   return (
-    <div className="hidden h-full shrink-0 space-y-4 bg-sidebar p-4 py-2 md:block md:w-[350px]">
+    <div className="hidden h-full shrink-0 space-y-4 px-4 md:block md:w-[350px]">
       <CardWithForm />
       <RecentActivity />
     </div>
@@ -69,7 +69,7 @@ export function CardWithForm() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Check</Button>
+        <Button variant="outline">Cek</Button>
       </CardFooter>
     </Card>
   );
@@ -88,7 +88,7 @@ export function DatePickerDemo() {
             !date && 'text-muted-foreground'
           )}
         >
-          {date ? format(date, 'PPP') : <span>Pick a date</span>}
+          {date ? format(date, 'PPP') : <span>Pilih tanggal</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
@@ -107,48 +107,48 @@ export function RecentActivity() {
   const activityData = [
     {
       icon: <CalendarIcon />,
-      customerName: 'Alice Johnson',
+      customerName: 'Ahmad Junaidi',
       carType: 'Toyota Corolla',
       licensePlate: 'TX1234',
       rentalDate: 'Today',
       time: '10:15 AM',
-      status: 'completed a booking'
+      status: 'menyelesaikan perjalanan'
     },
     {
       icon: <BadgeInfoIcon />,
-      customerName: 'Bob Smith',
+      customerName: 'Ahmad Syahroni',
       carType: 'Honda Civic',
       licensePlate: 'HX5678',
       rentalDate: 'Today',
       time: '11:30 AM',
-      status: 'booking is pending payment'
+      status: 'menunggu konfirmasi booking'
     },
     {
       icon: <BadgeCheckIcon />,
-      customerName: 'Charlie Davis',
+      customerName: 'Alwi Assegaf',
       carType: 'Ford Focus',
       licensePlate: 'FX9101',
       rentalDate: 'Yesterday',
       time: '09:45 AM',
-      status: 'started a monthly rental'
+      status: 'memesan mobil'
     },
     {
       icon: <CarIcon />,
-      customerName: 'Diana White',
+      customerName: 'Diana ',
       carType: 'Chevrolet Malibu',
       licensePlate: 'CX2345',
       rentalDate: 'Yesterday',
       time: '02:20 PM',
-      status: 'returned the'
+      status: 'menyelesaikan perjalanan'
     },
     {
       icon: <BadgeInfoIcon />,
-      customerName: 'Edward Green',
+      customerName: 'Gilang',
       carType: 'Nissan Altima',
       licensePlate: 'NX6789',
       rentalDate: 'Yesterday',
       time: '03:10 PM',
-      status: 'booking is pending payment'
+      status: 'memesan mobil '
     }
   ];
 
@@ -157,7 +157,7 @@ export function RecentActivity() {
       <CardHeader>
         <CardTitle>Aktivitas Terbaru</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="max-h-80 space-y-4 overflow-y-auto">
         {activityData.map((rental, index) => (
           <div key={index} className="relative flex items-start space-x-4">
             <div className="relative shrink-0">
@@ -171,7 +171,7 @@ export function RecentActivity() {
                 <span className="font-bold">{rental.customerName}</span>
               </p>
               <p className="text-sm font-medium leading-none">
-                {rental.status} for
+                {rental.status}
               </p>
               <p className="text-sm font-medium leading-none">
                 <span className="font-bold">{rental.carType}</span> (

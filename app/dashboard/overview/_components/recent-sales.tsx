@@ -16,8 +16,8 @@ const rentalData: Rental[] = [
     carType: 'Toyota Camry',
     licensePlate: 'B 1234 CD',
     amount: 'Rp. 500,000',
-    rentalDuration: '2 days',
-    rentalDate: '2023-10-01' // Example date
+    rentalDuration: '2 hari',
+    rentalDate: '2023-10-01'
   },
   {
     carPhotoUrl:
@@ -25,8 +25,8 @@ const rentalData: Rental[] = [
     carType: 'Honda Civic',
     licensePlate: 'B 5678 EF',
     amount: 'Rp. 300,000',
-    rentalDuration: '1 day',
-    rentalDate: '2023-10-02' // Example date
+    rentalDuration: '1 hari',
+    rentalDate: '2023-10-02'
   },
   {
     carPhotoUrl:
@@ -34,8 +34,8 @@ const rentalData: Rental[] = [
     carType: 'BMW X5',
     licensePlate: 'B 9101 GH',
     amount: 'Rp. 1,200,000',
-    rentalDuration: '3 days',
-    rentalDate: '2023-10-03' // Example date
+    rentalDuration: '3 hari',
+    rentalDate: '2023-10-03'
   },
   {
     carPhotoUrl:
@@ -43,8 +43,8 @@ const rentalData: Rental[] = [
     carType: 'Ford Fiesta',
     licensePlate: 'B 1122 IJ',
     amount: 'Rp. 250,000',
-    rentalDuration: '1 day',
-    rentalDate: '2023-10-04' // Example date
+    rentalDuration: '1 hari',
+    rentalDate: '2023-10-04'
   },
   {
     carPhotoUrl:
@@ -52,17 +52,8 @@ const rentalData: Rental[] = [
     carType: 'Mercedes S-Class',
     licensePlate: 'B 3344 KL',
     amount: 'Rp. 2,000,000',
-    rentalDuration: '5 days',
-    rentalDate: '2023-10-05' // Example date
-  },
-  {
-    carPhotoUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/3/3b/2018_Mercedes-Benz_S_450_Luxury.jpg',
-    carType: 'Mercedes S-Class',
-    licensePlate: 'B 3344 KL',
-    amount: 'Rp. 2,000,000',
-    rentalDuration: '5 days',
-    rentalDate: '2023-10-05' // Example date
+    rentalDuration: '5 hari',
+    rentalDate: '2023-10-05'
   }
 ];
 

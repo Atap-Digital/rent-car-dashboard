@@ -39,9 +39,13 @@ export default async function Page({ searchParams }: pageProps) {
             />
             <Link
               href="/dashboard/product/new"
-              className={cn(buttonVariants(), 'text-xs md:text-sm')}
+              className={cn(
+                buttonVariants(),
+                'text-xs md:text-sm',
+                'pointer-events-none'
+              )}
             >
-              <Plus className="mr-2 h-4 w-4" /> Add New
+              <Plus className="mr-2 h-4 w-4" /> Tambah Mobil
             </Link>
           </div>
           <Separator />
