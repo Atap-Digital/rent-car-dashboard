@@ -48,7 +48,10 @@ export default async function ClientListingPage({}: TClientListingPage) {
 
               <Link
                 href={'/dashboard/driver/new'}
-                className={cn(buttonVariants({ variant: 'default' }))}
+                className={cn(
+                  buttonVariants({ variant: 'default' }),
+                  'pointer-events-none'
+                )}
               >
                 <Plus className="mr-2 h-4 w-4" /> Tambah Driver
               </Link>
@@ -56,56 +59,6 @@ export default async function ClientListingPage({}: TClientListingPage) {
             <Separator />
             <DriverTable data={driver} totalData={totalUsers} />
           </div>
-          {/* Sidebar */}
-          <Card className="mt-4 lg:mt-0 lg:w-3/12">
-            {/* <CardHeader>
-              <div className="flex justify-between">
-                <CardTitle>John Doe</CardTitle>
-                <Badge
-                  className={`inline-flex items-center rounded-full bg-green-100 text-xs font-medium text-green-800 hover:bg-white`}
-                >
-                  On Duty
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="rounded-md">
-              <ul className="mb-4 space-y-2 text-sm">
-                <li>
-                  <strong>Email: </strong> john.doe@example.com
-                </li>
-                <li>
-                  <strong>Nomor Handphone: </strong> (123) 456-7890
-                </li>
-                <li>
-                  <strong>Alamat: </strong>
-                  <span className="break-words">
-                    Jl. Ancar 1 No 1 BTN Kekalik Baru
-                  </span>
-                </li>
-              </ul>
-              <Separator />
-              <div className="mt-4 flex items-center space-x-2">
-                <svg
-                  className="h-5 w-5 text-gray-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <div>
-                  <div className="text-sm font-medium ">Total Jam Kerja</div>
-                  <div className="text-xs text-gray-500">380 Jam</div>
-                </div>
-              </div>
-            </CardContent> */}
-            {/* <Separator /> */}
             <CardContent className="mt-4 rounded-md">
               <CardTitle className="mb-2">Jadwal Keberangkatan</CardTitle>
               <Calendar
@@ -313,7 +266,7 @@ export default async function ClientListingPage({}: TClientListingPage) {
                 </ul>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </div>
     </PageContainer>

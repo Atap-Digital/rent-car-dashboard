@@ -18,7 +18,7 @@ const data = {
   totalRevenue: {
     title: 'Total Pendapatan',
     value: 'Rp. 100.000.000',
-    change: '12% dari bulan sebelumnya',
+    change: '+12% dari bulan sebelumnya',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const data = {
   sales: {
     title: 'Total Keuntungan',
     value: 'Rp. 20.000.000',
-    change: '12% dari bulan sebelumnya',
+    change: '+5% dari bulan sebelumnya',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ const data = {
   },
   activeNow: {
     title: 'Total Mobil Saat Ini',
-    value: '+17',
+    value: '+24',
     change: '+2 dari bulan sebelumnya',
     icon: (
       <svg
@@ -98,24 +98,25 @@ const data = {
 
 export default function OverViewPage() {
   return (
-    <PageContainer scrollable showRightContainer>
+    // <PageContainer scrollable showRightContainer>
+    <PageContainer scrollable>
       <div className="space-y-2">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">
-            Hi, Welcome back 👋
+            Halo, Selamat Datang 👋
           </h2>
           <div className="hidden items-center space-x-2 md:flex">
             <CalendarDateRangePicker />
-            <Button>Export Data</Button>
+            <Button>Download Data</Button>
           </div>
         </div>
         <Tabs defaultValue="overview" className="space-y-4">
-          <TabsList>
+          {/* <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="analytics" disabled>
               Analytics
             </TabsTrigger>
-          </TabsList>
+          </TabsList> */}
           <TabsContent value="overview" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {Object.values(data).map((item, index) => (
@@ -135,24 +136,6 @@ export default function OverViewPage() {
                 </Card>
               ))}
             </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <div className="space-y-4 lg:col-span-2">
-                <BarGraph />
-                <AreaGraph />
-              </div>
-              <div className="space-y-4">
-                <Card className="col-span-4 md:col-span-3">
-                  <CardHeader>
-                    <CardTitle>Penjualan Terakhir</CardTitle>
-                    <CardDescription>
-                      Berikut adalah 5 data transaksi terakhir.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <RecentRentals />
-                  </CardContent>
-                </Card>
-              </div>
             </div>
           </TabsContent>
         </Tabs>

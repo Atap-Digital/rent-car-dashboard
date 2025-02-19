@@ -12,6 +12,10 @@ export const CATEGORY_OPTIONS = [
   { value: 'Sports', label: 'Sports' },
   { value: 'Luxury', label: 'Luxury' }
 ];
+export const STATUS_OPTIONS = [
+  { value: 'available', label: 'Tersedia' },
+  { value: 'unavailable', label: 'Tidak Tersedia' }
+];
 export function useProductTableFilters() {
   const [searchQuery, setSearchQuery] = useQueryState(
     'q',
@@ -24,6 +28,10 @@ export function useProductTableFilters() {
     'categories',
     searchParams.categories.withOptions({ shallow: false }).withDefault('')
   );
+  const [statusFilter, setStatusFilter] = useQueryState(
+    'status',
+    searchParams.statuses.withOptions({ shallow: false }).withDefault('')
+  );
 
   const [page, setPage] = useQueryState(
     'page',
@@ -33,13 +41,14 @@ export function useProductTableFilters() {
   const resetFilters = useCallback(() => {
     setSearchQuery(null);
     setCategoriesFilter(null);
+    setStatusFilter(null);
 
     setPage(1);
-  }, [setSearchQuery, setCategoriesFilter, setPage]);
+  }, [setSearchQuery, setCategoriesFilter, setStatusFilter, setPage]);
 
   const isAnyFilterActive = useMemo(() => {
-    return !!searchQuery || !!categoriesFilter;
-  }, [searchQuery, categoriesFilter]);
+    return !!searchQuery || !!categoriesFilter || !!statusFilter;
+  }, [searchQuery, categoriesFilter, statusFilter]);
 
   return {
     searchQuery,
@@ -49,6 +58,8 @@ export function useProductTableFilters() {
     resetFilters,
     isAnyFilterActive,
     categoriesFilter,
-    setCategoriesFilter
+    setCategoriesFilter,
+    statusFilter,
+    setStatusFilter
   };
 }
