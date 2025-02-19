@@ -4,7 +4,10 @@ import React, { useState } from 'react';
 import {
   Calendar as BigCalendar,
   momentLocalizer,
-  Views
+  Views,
+  ToolbarProps,
+  NavigateAction,
+  View
 } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -37,7 +40,7 @@ const generateBookings = () => {
     0
   ); // Last day of the current month
 
-  for (let i = 1; i <= 200; i++) {
+  for (let i = 1; i <= 50; i++) {
     // Increased number of bookings for better monthly view
     const bookingDate = new Date(
       startDate.getTime() +
@@ -70,11 +73,11 @@ const generateBookings = () => {
 const bookings = generateBookings();
 
 export default function AdvancedRentalCarCalendar() {
-  const [selectedBooking, setSelectedBooking] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredBookings, setFilteredBookings] = useState(bookings);
-  const [currentView, setCurrentView] = useState(Views.MONTH);
-  const [date, setDate] = useState(new Date());
+  const [selectedBooking, setSelectedBooking] = useState<any>(null);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [filteredBookings, setFilteredBookings] = useState<any[]>(bookings);
+  const [currentView, setCurrentView] = useState<View>(Views.MONTH);
+  const [date, setDate] = useState<Date>(new Date());
 
   const handleSelectEvent = (event: any) => {
     setSelectedBooking(event);
@@ -96,9 +99,9 @@ export default function AdvancedRentalCarCalendar() {
 
   const eventStyleGetter = (
     event: any,
-    start: any,
-    end: any,
-    isSelected: any
+    start: Date,
+    end: Date,
+    isSelected: boolean
   ) => {
     const vehicle = vehicles.find((v) => v.id === event.resourceId);
     return {
@@ -113,15 +116,15 @@ export default function AdvancedRentalCarCalendar() {
     };
   };
 
-  const handleViewChange = (view: any) => {
+  const handleViewChange = (view: View) => {
     setCurrentView(view);
   };
 
-  const handleNavigate = (date: any) => {
+  const handleNavigate = (date: Date) => {
     setDate(date);
   };
 
-  const handleDrillDown = (date: any, view: any) => {
+  const handleDrillDown = (date: Date, view: View) => {
     setCurrentView(view);
     setDate(date);
   };
@@ -180,25 +183,15 @@ export default function AdvancedRentalCarCalendar() {
   );
 }
 
-function CustomToolbar({
-  label,
-  onNavigate,
-  onView,
-  views
-}: {
-  label: string;
-  onNavigate: (action: 'PREV' | 'NEXT' | 'TODAY', date?: Date) => void;
-  onView: (view: string) => void;
-  views: string[];
-}) {
-  const [activeButton, setActiveButton] = useState('month');
+function CustomToolbar({ label, onNavigate, onView, views }: ToolbarProps) {
+  const [activeButton, setActiveButton] = useState<string>('month');
 
-  const handleNavigate = (action: 'PREV' | 'NEXT' | 'TODAY') => {
+  const handleNavigate = (action: NavigateAction) => {
     onNavigate(action);
     setActiveButton(action);
   };
 
-  const handleView = (view: string) => {
+  const handleView = (view: View) => {
     onView(view);
     setActiveButton(view);
   };
@@ -230,11 +223,11 @@ function CustomToolbar({
       </div>
       <span className="text-lg font-semibold">{label}</span>
       <div>
-        {views.map((name) => (
+        {[Views.MONTH, Views.WEEK, Views.DAY].map((name) => (
           <Button
             key={name}
             variant={activeButton === name ? 'default' : 'outline'}
-            onClick={() => handleView(name)}
+            onClick={() => handleView(name as View)}
             className="ml-2"
             style={{
               backgroundColor:
@@ -243,7 +236,7 @@ function CustomToolbar({
                 activeButton === name ? 'hsl(var(--primary-foreground))' : ''
             }}
           >
-            {name}
+            {name.charAt(0).toUpperCase() + name.slice(1)}
           </Button>
         ))}
       </div>

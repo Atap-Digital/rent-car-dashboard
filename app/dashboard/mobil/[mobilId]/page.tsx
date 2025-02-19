@@ -4,17 +4,17 @@ import { Suspense } from 'react';
 import ProductViewPage from '../_components/mobil-view-page';
 
 export const metadata = {
-  title: 'Dashboard : Product View'
+  title: 'Dashboard : Mobil View'
 };
 
-type PageProps = { params: { productId: string } };
+type PageProps = { params: { mobilId: string } };
 
 export default function Page({ params }: PageProps) {
   return (
     <PageContainer scrollable>
       <div className="flex-1 space-y-4">
         <Suspense fallback={<FormCardSkeleton />}>
-          <ProductViewPage productId={params.productId} />
+          <ProductViewPage productId={params.mobilId} />
         </Suspense>
       </div>
     </PageContainer>

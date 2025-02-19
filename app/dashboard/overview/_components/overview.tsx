@@ -1,5 +1,5 @@
 import { AreaGraph } from './area-graph';
-import { BarGraph } from './bar-graph';
+import { Component as BarGraph } from './bar-graph';
 import { PieGraph } from './pie-graph';
 import { CalendarDateRangePicker } from '@/components/date-range-picker';
 import PageContainer from '@/components/layout/page-container';
@@ -118,7 +118,7 @@ export default function OverViewPage() {
             </TabsTrigger>
           </TabsList> */}
           <TabsContent value="overview" className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {Object.values(data).map((item, index) => (
                 <Card key={index}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -136,27 +136,6 @@ export default function OverViewPage() {
                 </Card>
               ))}
             </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
-              <div className="col-span-12">
-                <BarGraph />
-              </div>
-              <Card className="col-span-12 md:col-span-12">
-                <CardHeader>
-                  <CardTitle>Penjualan Terakhir</CardTitle>
-                  <CardDescription>
-                    Berikut adalah 5 data transaksi terakhir.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <RecentRentals />
-                </CardContent>
-              </Card>
-              <div className="col-span-12">
-                <AreaGraph />
-              </div>
-              {/* <div className="col-span-6 md:col-span-6">
-                <PieGraph />
-              </div> */}
             </div>
           </TabsContent>
         </Tabs>

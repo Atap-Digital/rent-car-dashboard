@@ -11,15 +11,27 @@ import { Product } from '@/constants/mock-api';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MoreHorizontal } from 'lucide-react';
+import { Edit, Eye, MoreHorizontal, Trash } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-// Assuming you have this icon or similar
+import { useState } from 'react';
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
+import { AlertModal } from '@/components/modal/alert-modal';
+
 interface ProductGridProps {
   products: Product[];
 }
 
 export default function ProductGrid({ products }: ProductGridProps) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {products.map((product) => (
@@ -87,6 +99,41 @@ export default function ProductGrid({ products }: ProductGridProps) {
               >
                 <MoreHorizontal className="h-5 w-5" />
               </Button>
+              <AlertModal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                onConfirm={() => {}}
+                loading={loading}
+              />
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="h-8 w-8 p-0">
+                    <span className="sr-only">Open menu</span>
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                  <DropdownMenuItem
+                    onClick={() =>
+                      router.push(`/dashboard/mobil/${product.id}`)
+                    }
+                  >
+                    <Eye className="mr-2 h-4 w-4" /> Detail
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() =>
+                      router.push(`/dashboard/mobil/${product.id}`)
+                    }
+                  >
+                    <Edit className="mr-2 h-4 w-4" /> Update
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem onClick={() => setOpen(true)}>
+                    <Trash className="mr-2 h-4 w-4" /> Delete
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </CardContent>
         </Card>
