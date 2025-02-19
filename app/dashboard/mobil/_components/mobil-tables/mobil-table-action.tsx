@@ -5,6 +5,7 @@ import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-fil
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
 import {
   CATEGORY_OPTIONS,
+  STATUS_OPTIONS,
   useProductTableFilters
 } from './use-mobil-table-filters';
 
@@ -12,6 +13,8 @@ export default function ProductTableAction() {
   const {
     categoriesFilter,
     setCategoriesFilter,
+    statusFilter,
+    setStatusFilter,
     isAnyFilterActive,
     resetFilters,
     searchQuery,
@@ -32,6 +35,13 @@ export default function ProductTableAction() {
         options={CATEGORY_OPTIONS}
         setFilterValue={setCategoriesFilter}
         filterValue={categoriesFilter}
+      />
+      <DataTableFilterBox
+        filterKey="status"
+        title="Status Mobil"
+        options={STATUS_OPTIONS}
+        setFilterValue={setStatusFilter}
+        filterValue={statusFilter}
       />
       <DataTableResetFilter
         isFilterActive={isAnyFilterActive}

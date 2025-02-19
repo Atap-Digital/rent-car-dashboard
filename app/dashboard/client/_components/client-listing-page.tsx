@@ -39,7 +39,10 @@ export default async function ClientListingPage({}: TClientListingPage) {
 
           <Link
             href={'/dashboard/client/new'}
-            className={cn(buttonVariants({ variant: 'default' }))}
+            className={cn(
+              buttonVariants({ variant: 'default' }),
+              'pointer-events-none'
+            )}
           >
             <Plus className="mr-2 h-4 w-4" /> Add Client
           </Link>

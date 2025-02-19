@@ -20,7 +20,7 @@ export default function Header() {
           <SearchInput />
         </div>
         <UserNav />
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
       </div>
     </header>
   );

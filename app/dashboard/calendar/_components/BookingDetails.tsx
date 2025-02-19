@@ -43,12 +43,12 @@ export function BookingDetails({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{booking.title}</DialogTitle>
-          <DialogDescription>Booking Details</DialogDescription>
+          <DialogDescription>Detail Booking</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="customer" className="text-right">
-              Customer
+              Nama
             </Label>
             <div id="customer" className="col-span-3">
               {booking.customer}
@@ -56,7 +56,7 @@ export function BookingDetails({
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="phone" className="text-right">
-              Phone
+              Kontak
             </Label>
             <div id="phone" className="col-span-3">
               {booking.phone}
@@ -64,7 +64,7 @@ export function BookingDetails({
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="vehicle" className="text-right">
-              Vehicle
+              Mobil
             </Label>
             <div id="vehicle" className="col-span-3">
               {vehicle ? vehicle.title : 'Unknown'}
@@ -72,7 +72,7 @@ export function BookingDetails({
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="start" className="text-right">
-              Start
+              Berangkat
             </Label>
             <div id="start" className="col-span-3">
               {booking.start.toLocaleString()}
@@ -80,7 +80,7 @@ export function BookingDetails({
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="end" className="text-right">
-              End
+              Kembali
             </Label>
             <div id="end" className="col-span-3">
               {booking.end.toLocaleString()}
@@ -89,14 +89,13 @@ export function BookingDetails({
           {vehicle && (
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="color" className="text-right">
-                Color
+                Warna Mobil
               </Label>
               <div id="color" className="col-span-3 flex items-center">
                 <div
                   className="mr-2 h-6 w-6 rounded-full"
                   style={{ backgroundColor: vehicle.color }}
                 ></div>
-                {vehicle.color}
               </div>
             </div>
           )}

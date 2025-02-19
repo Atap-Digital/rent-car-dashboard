@@ -14,7 +14,7 @@ import ProductTableAction from './_components/mobil-tables/mobil-table-action';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export const metadata = {
-  title: 'Dashboard: Products'
+  title: 'Dashboard: Mobil'
 };
 
 type pageProps = {

@@ -48,7 +48,10 @@ export default async function ClientListingPage({}: TClientListingPage) {
 
               <Link
                 href={'/dashboard/driver/new'}
-                className={cn(buttonVariants({ variant: 'default' }))}
+                className={cn(
+                  buttonVariants({ variant: 'default' }),
+                  'pointer-events-none'
+                )}
               >
                 <Plus className="mr-2 h-4 w-4" /> Tambah Driver
               </Link>
@@ -57,8 +60,8 @@ export default async function ClientListingPage({}: TClientListingPage) {
             <DriverTable data={driver} totalData={totalUsers} />
           </div>
           {/* Sidebar */}
-          <Card className="mt-4 lg:mt-0 lg:w-3/12">
-            {/* <CardHeader>
+          {/* <Card className="mt-4 lg:mt-0 lg:w-3/12">
+            <CardHeader>
               <div className="flex justify-between">
                 <CardTitle>John Doe</CardTitle>
                 <Badge
@@ -104,8 +107,8 @@ export default async function ClientListingPage({}: TClientListingPage) {
                   <div className="text-xs text-gray-500">380 Jam</div>
                 </div>
               </div>
-            </CardContent> */}
-            {/* <Separator /> */}
+            </CardContent>
+            <Separator />
             <CardContent className="mt-4 rounded-md">
               <CardTitle className="mb-2">Jadwal Keberangkatan</CardTitle>
               <Calendar
@@ -313,7 +316,7 @@ export default async function ClientListingPage({}: TClientListingPage) {
                 </ul>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
       </div>
     </PageContainer>
